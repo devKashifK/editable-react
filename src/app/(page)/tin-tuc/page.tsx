@@ -1,6 +1,5 @@
 "use client";
 import Container from "@/components/ui/container";
-import { Icon } from "@iconify/react/dist/iconify.js";
 import React, { cache, useEffect, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
@@ -185,19 +184,6 @@ const calculateReadTime = (content) => {
   return `${time || 1} min read`; // Ensure at least "1 min read"
 };
 
-export function LoadingAnimation() {
-  return (
-    <div className="flex justify-center items-center flex-col gap-2 h-[70vh] ">
-      <motion.div
-        className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full"
-        animate={{ rotate: 360 }}
-        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-      />
-      Loading Please Wait
-    </div>
-  );
-}
-
 const fetchMedia = async (mediaId) => {
   try {
     const res = await fetch(`https://icanpr.vn/wp-json/wp/v2/media/${mediaId}`);
@@ -209,3 +195,16 @@ const fetchMedia = async (mediaId) => {
     return "/default.jpg";
   }
 };
+
+function LoadingAnimation() {
+  return (
+    <div className="flex justify-center items-center flex-col gap-2 h-[70vh] ">
+      <motion.div
+        className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full"
+        animate={{ rotate: 360 }}
+        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+      />
+      Loading Please Wait
+    </div>
+  );
+}

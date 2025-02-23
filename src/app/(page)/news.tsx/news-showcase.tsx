@@ -1,12 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Autoplay } from "swiper/modules";
 import { NewsFeedCard } from "@/components/ui/newsCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { supabase } from "@/supabaseClient";
-import { LoadingAnimation } from "../tin-tuc/page";
 import Container from "@/components/ui/container";
+import { motion } from "framer-motion";
 
 export default function NewsShowcase() {
   const [data, setData] = useState([]);
@@ -124,3 +122,16 @@ const fetchMedia = async (mediaId) => {
     return "/default.jpg";
   }
 };
+
+function LoadingAnimation() {
+  return (
+    <div className="flex justify-center items-center flex-col gap-2 h-[70vh] ">
+      <motion.div
+        className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full"
+        animate={{ rotate: 360 }}
+        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+      />
+      Loading Please Wait
+    </div>
+  );
+}
