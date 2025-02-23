@@ -24,7 +24,6 @@ import { cn } from "@/lib/utils";
 import Glass from "@/lib/helpers";
 
 // If OfficeCard & ContactForm are real, import them from their actual location:
-import { OfficeCard, ContactForm } from "@/app/(pages)/lien-he/page";
 import HoverCard from "./ui/hover-card";
 import TitleWithDoubleBorder from "./ui/title-with-double-border";
 import TitleWithBottomBorder from "./ui/title-with-bottom-border";
@@ -47,8 +46,16 @@ import { ServicesCard } from "./ui/services-card";
 import { Feature } from "./ui/cards-set";
 import { FeatureEditor } from "./ui/feature-editor";
 import { EditableServicesCard } from "./ui/editable-services-card";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table (2)";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "./ui/table (2)";
 import NewsShowcase from "@/app/(page)/news.tsx/news-showcase";
+import { ContactForm, OfficeCard } from "@/app/(pages)/lien-he/contact";
 // Add these interfaces at the top of the file
 interface HeroProps {
   backgroundImage: string;
@@ -127,18 +134,15 @@ function applyTemplate(templateNode: any, item: any) {
       return typeof item === "object" ? JSON.stringify(item) : item;
     }
     // Replace occurrences of "item.field" with the string version of that value
-    return templateNode.replace(
-      /item\.([a-zA-Z0-9_]+)/g,
-      (_, field) => {
-        const value = item[field];
-        return value != null ? String(value) : "";
-      }
-    );
+    return templateNode.replace(/item\.([a-zA-Z0-9_]+)/g, (_, field) => {
+      const value = item[field];
+      return value != null ? String(value) : "";
+    });
   }
 
   // Handle arrays
   if (Array.isArray(templateNode)) {
-    return templateNode.map(child => applyTemplate(child, item));
+    return templateNode.map((child) => applyTemplate(child, item));
   }
 
   // Handle objects
@@ -169,7 +173,9 @@ function applyTemplate(templateNode: any, item: any) {
 
     // Recursively apply the template to children
     if (Array.isArray(newNode.children)) {
-      newNode.children = newNode.children.map(child => applyTemplate(child, item));
+      newNode.children = newNode.children.map((child) =>
+        applyTemplate(child, item)
+      );
     }
 
     return newNode;
@@ -177,7 +183,6 @@ function applyTemplate(templateNode: any, item: any) {
 
   return templateNode;
 }
-
 
 /** Types for Node and NodeProps (optional). */
 export interface NodeProps {
@@ -234,18 +239,21 @@ export function InPlacePageRenderer({
    * Called when an editable component updates its props.
    * We do a path-based update, merging newProps into the node at that path.
    */
-  const handleNodeChange = (path: number[], newProps: Partial<NodeProps> & { children?: any[] }) => {
+  const handleNodeChange = (
+    path: number[],
+    newProps: Partial<NodeProps> & { children?: any[] }
+  ) => {
     if (!onChange) return;
-  
+
     const cloned = Array.isArray(nodes)
       ? structuredClone(nodes)
       : structuredClone([nodes]);
-  
+
     const updateAtPath = (nodeArray: Node[], path: number[]): boolean => {
       if (path.length === 0) return false;
       const [index, ...rest] = path;
       if (index < 0 || index >= nodeArray.length) return false;
-  
+
       if (rest.length === 0) {
         // Separate children from other props
         const { children: newChildren, ...restProps } = newProps;
@@ -257,7 +265,8 @@ export function InPlacePageRenderer({
             ...restProps,
           },
           // If children was provided, update the top-level children property
-          children: newChildren !== undefined ? newChildren : nodeArray[index].children,
+          children:
+            newChildren !== undefined ? newChildren : nodeArray[index].children,
         };
         return true;
       }
@@ -265,28 +274,34 @@ export function InPlacePageRenderer({
       if (!childNode.children) return false;
       return updateAtPath(childNode.children, rest);
     };
-  
+
     updateAtPath(cloned, path);
-  
+
     if (Array.isArray(nodes)) {
       onChange(cloned);
     } else {
       onChange(cloned[0]);
     }
   };
-  
 
   /**
    * Recursively renders a single node, given a path array (e.g. [0,1,2]).
    */
   const renderNode = (node: Node, path: number[]): React.ReactNode => {
-    console.log("Rendering node:", { type: node.type, props: node.props, path });
+    console.log("Rendering node:", {
+      type: node.type,
+      props: node.props,
+      path,
+    });
 
     if (!node) return null;
     if (typeof node === "string") return node;
 
     // Helper function to safely render children
-    const renderChildren = (children: (Node | string)[] | undefined, path: number[]) => {
+    const renderChildren = (
+      children: (Node | string)[] | undefined,
+      path: number[]
+    ) => {
       if (!children) return null;
       return children.map((child, i) => {
         if (typeof child === "string") return child;
@@ -303,7 +318,10 @@ export function InPlacePageRenderer({
       console.log(`Mapping over ${node.source}:`, data);
 
       return (
-        <div key={path.join("-")} className="flex flex-wrap gap-4 justify-center">
+        <div
+          key={path.join("-")}
+          className="flex flex-wrap gap-4 justify-center"
+        >
           {data.map((item, idx) => {
             const childNode = applyTemplate(node.template, item);
             if (editable && childNode.type === "text") {
@@ -428,9 +446,14 @@ export function InPlacePageRenderer({
           />
         );
 
-
       case "img":
-          return <img src={node.props.src} alt={node.props.alt} className={node.props.className} />;
+        return (
+          <img
+            src={node.props.src}
+            alt={node.props.alt}
+            className={node.props.className}
+          />
+        );
 
       case "CTADefault":
         if (editable) {
@@ -442,7 +465,12 @@ export function InPlacePageRenderer({
             />
           );
         }
-        return <CTADefault key={path.join("-")} {...(node.props as EditableCTADefaultProps)} />;
+        return (
+          <CTADefault
+            key={path.join("-")}
+            {...(node.props as EditableCTADefaultProps)}
+          />
+        );
 
       case "CardWithImage":
         if (editable) {
@@ -469,8 +497,8 @@ export function InPlacePageRenderer({
 
       case "Container":
         return (
-          <Container 
-            key={path.join("-")} 
+          <Container
+            key={path.join("-")}
             className={node.props?.className}
             style={node.props?.style}
           >
@@ -480,17 +508,14 @@ export function InPlacePageRenderer({
 
       case "Glass":
         return (
-          <Glass 
-            key={path.join("-")} 
+          <Glass
+            key={path.join("-")}
             className={node.props?.className}
             style={node.props?.style}
           >
             {renderChildren(node.children, path)}
           </Glass>
         );
-
-      
-       
 
       case "HoverCard":
         if (editable) {
@@ -557,8 +582,8 @@ export function InPlacePageRenderer({
       case "section":
         if (editable) {
           return (
-            <section 
-              key={path.join("-")} 
+            <section
+              key={path.join("-")}
               className={node.props?.className}
               style={node.props?.style}
             >
@@ -576,15 +601,17 @@ export function InPlacePageRenderer({
                   {node.children[0]}
                 </div>
               ) : (
-                node.children?.map((child, i) => renderNode(child, [...path, i]))
+                node.children?.map((child, i) =>
+                  renderNode(child, [...path, i])
+                )
               )}
             </section>
           );
         }
         // Non-editable:
         return (
-          <section 
-            key={path.join("-")} 
+          <section
+            key={path.join("-")}
             className={node.props?.className}
             style={node.props?.style}
           >
@@ -595,8 +622,8 @@ export function InPlacePageRenderer({
       case "div":
         if (editable) {
           return (
-            <div 
-              key={path.join("-")} 
+            <div
+              key={path.join("-")}
               className={node.props?.className}
               style={node.props?.style}
             >
@@ -620,8 +647,8 @@ export function InPlacePageRenderer({
           );
         }
         return (
-          <div 
-            key={path.join("-")} 
+          <div
+            key={path.join("-")}
             className={node.props?.className}
             style={node.props?.style}
           >
@@ -670,21 +697,24 @@ export function InPlacePageRenderer({
         );
 
       case "Icon":
-        return <Icon 
-          key={path.join("-")} 
-          icon={node.props.icon}
-          className={node.props.className}
-          style={node.props.style}
-        />;
+        return (
+          <Icon
+            key={path.join("-")}
+            icon={node.props.icon}
+            className={node.props.className}
+            style={node.props.style}
+          />
+        );
 
       case "p":
         if (editable) {
           const content = node.children?.[0];
-          const textContent = typeof content === "string"
-            ? content
-            : typeof content === "object" && content?.props?.text
-            ? content.props.text
-            : "";
+          const textContent =
+            typeof content === "string"
+              ? content
+              : typeof content === "object" && content?.props?.text
+              ? content.props.text
+              : "";
 
           return (
             <div
@@ -703,8 +733,8 @@ export function InPlacePageRenderer({
           );
         }
         return (
-          <p 
-            key={path.join("-")} 
+          <p
+            key={path.join("-")}
             className={node.props?.className}
             style={node.props?.style}
           >
@@ -717,7 +747,10 @@ export function InPlacePageRenderer({
           return (
             <ul
               key={path.join("-")}
-              className={cn("list-disc list-inside space-y-2", node.props?.className)}
+              className={cn(
+                "list-disc list-inside space-y-2",
+                node.props?.className
+              )}
             >
               {renderChildren(node.children, path)}
             </ul>
@@ -764,7 +797,6 @@ export function InPlacePageRenderer({
           </UL>
         );
 
-
       case "HeroDefault":
         if (editable) {
           return (
@@ -776,9 +808,7 @@ export function InPlacePageRenderer({
             />
           );
         }
-        return (
-          <HeroDefault key={path.join("-")} {...node.props} />
-        );
+        return <HeroDefault key={path.join("-")} {...node.props} />;
 
       case "List":
         return (
@@ -787,11 +817,10 @@ export function InPlacePageRenderer({
           </List>
         );
 
-
       case "Link":
-          if (editable) {
-            return (
-              <div key={path.join("-")} className={node.props?.className}>
+        if (editable) {
+          return (
+            <div key={path.join("-")} className={node.props?.className}>
               {/* Input field for editing the link URL */}
               <input
                 type="text"
@@ -817,25 +846,19 @@ export function InPlacePageRenderer({
                 {renderChildren(node.children, path)}
               </div>
             </div>
-            );
-          }
-          return (
-            <Link key={path.join("-")} {...node.props}>
-              {renderChildren(node.children, path)}
-            </Link>
           );
-        
+        }
+        return (
+          <Link key={path.join("-")} {...node.props}>
+            {renderChildren(node.children, path)}
+          </Link>
+        );
 
       case "iframe":
-          return (
-            <iframe
-              key={path.join("-")}
-              {...node.props}
-            />
-          );
+        return <iframe key={path.join("-")} {...node.props} />;
 
       case "faq":
-       if (editable) {
+        if (editable) {
           return (
             <EditableFAQ
               key={path.join("-")}
@@ -844,87 +867,73 @@ export function InPlacePageRenderer({
             />
           );
         }
-        return (
-          <FAQ
-            key={path.join("-")}
-            items={node.props.faq}
-          />
-        );
-
+        return <FAQ key={path.join("-")} items={node.props.faq} />;
 
       case "span":
-          if (editable) {
-            const content = node.children?.[0];
-            const textContent = typeof content === "string"
+        if (editable) {
+          const content = node.children?.[0];
+          const textContent =
+            typeof content === "string"
               ? content
               : typeof content === "object" && content?.props?.text
               ? content.props.text
               : "";
 
-            return (
-              <span
-                key={path.join("-")}
-                className={cn("outline-none", node.props?.className)}
-                contentEditable={true}
-                suppressContentEditableWarning={true}
-                onBlur={(e) =>
-                  handleNodeChange(path, {
-                    children: [e.currentTarget.textContent || ""],
-                  })
-                }
-                style={node.props?.style}
-              >
-                {textContent}
-              </span>
-            );
-          }
           return (
             <span
               key={path.join("-")}
-              {...node.props}
+              className={cn("outline-none", node.props?.className)}
+              contentEditable={true}
+              suppressContentEditableWarning={true}
+              onBlur={(e) =>
+                handleNodeChange(path, {
+                  children: [e.currentTarget.textContent || ""],
+                })
+              }
+              style={node.props?.style}
             >
-              {renderChildren(node.children, path)}
+              {textContent}
             </span>
           );
-
+        }
+        return (
+          <span key={path.join("-")} {...node.props}>
+            {renderChildren(node.children, path)}
+          </span>
+        );
 
       case "h3":
-            if (editable) {
-              const content = node.children?.[0];
-              const textContent = typeof content === "string"
-                ? content
-                : typeof content === "object" && content?.props?.text
-                ? content.props.text
-                : "";
+        if (editable) {
+          const content = node.children?.[0];
+          const textContent =
+            typeof content === "string"
+              ? content
+              : typeof content === "object" && content?.props?.text
+              ? content.props.text
+              : "";
 
-              return (
-                <h3
-                  key={path.join("-")}
-                  className={cn("outline-none", node.props?.className)}
-                  contentEditable={true}
-                  suppressContentEditableWarning={true}
-                  onBlur={(e) =>
-                    handleNodeChange(path, {
-                      children: [e.currentTarget.textContent || ""],
-                    })
-                  }
-                  style={node.props?.style}
-                >
-                  {textContent}
-                </h3>
-                
-              );
-            }
-            return (
-              <h3
-                key={path.join("-")}
-                {...node.props}
-              >
-                {renderChildren(node.children, path)}
-              </h3>
-            );
-     
-
+          return (
+            <h3
+              key={path.join("-")}
+              className={cn("outline-none", node.props?.className)}
+              contentEditable={true}
+              suppressContentEditableWarning={true}
+              onBlur={(e) =>
+                handleNodeChange(path, {
+                  children: [e.currentTarget.textContent || ""],
+                })
+              }
+              style={node.props?.style}
+            >
+              {textContent}
+            </h3>
+          );
+        }
+        return (
+          <h3 key={path.join("-")} {...node.props}>
+            {renderChildren(node.children, path)}
+          </h3>
+        );
 
       case "TreeList":
         if (editable) {
@@ -948,21 +957,19 @@ export function InPlacePageRenderer({
         }
         return (
           <div key={path.join("-")} className="space-y-4 px-12">
-              <TreeViewList
-                list={node.props.list}
-              />
+            <TreeViewList list={node.props.list} />
           </div>
         );
-
 
       case "h4":
         if (editable) {
           const content = node.children?.[0];
-          const textContent = typeof content === "string"
-            ? content
-            : typeof content === "object" && content?.props?.text
-            ? content.props.text
-            : "";
+          const textContent =
+            typeof content === "string"
+              ? content
+              : typeof content === "object" && content?.props?.text
+              ? content.props.text
+              : "";
 
           return (
             <h4
@@ -987,7 +994,6 @@ export function InPlacePageRenderer({
           </h4>
         );
 
-
       case "ServicesCard":
         if (editable) {
           return (
@@ -998,11 +1004,7 @@ export function InPlacePageRenderer({
             />
           );
         }
-        return (
-          <ServicesCard key={path.join("-")} {...node.props} />
-        );
-        
-        
+        return <ServicesCard key={path.join("-")} {...node.props} />;
 
       case "Feature":
         if (editable) {
@@ -1014,10 +1016,7 @@ export function InPlacePageRenderer({
             />
           );
         }
-        return (
-          <Feature key={path.join("-")} {...node.props} />
-        );
-
+        return <Feature key={path.join("-")} {...node.props} />;
 
       case "Table":
         return (
@@ -1025,7 +1024,6 @@ export function InPlacePageRenderer({
             {node.children?.map((child, i) => renderNode(child, [...path, i]))}
           </Table>
         );
-
 
       case "TableCell":
         return (
@@ -1049,19 +1047,18 @@ export function InPlacePageRenderer({
         );
 
       case "TableRow":
-      return (
-        <TableRow key={path.join("-")} {...node.props}>
-          {node.children?.map((child, i) => renderNode(child, [...path, i]))}
-        </TableRow>
-      );
+        return (
+          <TableRow key={path.join("-")} {...node.props}>
+            {node.children?.map((child, i) => renderNode(child, [...path, i]))}
+          </TableRow>
+        );
 
-
-    case "TableBody":
-      return (
-        <TableBody key={path.join("-")} {...node.props}>
-          {node.children?.map((child, i) => renderNode(child, [...path, i]))}
-        </TableBody>
-      );
+      case "TableBody":
+        return (
+          <TableBody key={path.join("-")} {...node.props}>
+            {node.children?.map((child, i) => renderNode(child, [...path, i]))}
+          </TableBody>
+        );
 
       default:
         console.warn(`Unknown component type: ${node.type}`);
@@ -1086,7 +1083,3 @@ const renderTextContent = (content: any): string => {
   if (content?.children?.[0]) return renderTextContent(content.children[0]);
   return "";
 };
-
-
-
-
