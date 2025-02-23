@@ -1,0 +1,270 @@
+{
+  "type": "div",
+  "props": {},
+  "children": [
+    {
+      "type": "Container",
+      "props": {},
+      "children": [
+        {
+          "type": "Glass",
+          "props": {
+            "className": "flex flex-col gap-6"
+          },
+          "children": [
+            {
+              "type": "Title",
+              "props": {
+                "title": "GreenTech Resources & GTR Immigration",
+                "subtitle": "Công ty mẹ tại Canada",
+                "description": "Đối tác chiến lược với GreenTech Resources & GTR Immigration - CIC CANADA JOBS - Ngân Hàng Việc Làm cho người nước ngoài.\r\nChuyên tuyển dụng nhiều vị trí, chủ doanh nghiệp hỗ trợ LMIA cho lao động nước ngoài."
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "type": "Glass",
+          "props": {
+            "className": "flex flex-col gap-6"
+          },
+          "children": [
+            {
+              "type": "Title",
+              "props": {
+                "title": "Study Abroad",
+                "subtitle": "iCANPR",
+                "description": "Khi nói đến du học, Canada là một trong những điểm đến hàng đầu với hệ thống giáo dục đẳng cấp thế giới và môi trường sống an toàn, thân thiện. Để mang đến cơ hội học tập tốt nhất cho sinh viên quốc tế, chúng tôi không ngừng tìm kiếm và xây dựng các mối quan hệ đối tác là các trường, cơ sở đào tạo uy tín."
+              },
+              "children": []
+            },
+            {
+              "type": "div",
+              "props": {
+                "className": "h-56 overflow-y-auto pretty-scroll"
+              },
+              "children": [
+                {
+                  "type": "div",
+                  "props": {
+                    "className": "py-1 px-2 border border-background/60 text-left"
+                  },
+                  "children": [
+                    "Acadia University"
+                  ]
+                },
+                {
+                  "type": "div",
+                  "props": {
+                    "className": "py-1 px-2 border border-background/60 text-left"
+                  },
+                  "children": [
+                    "Portage College"
+                  ]
+                },
+                {
+                  "type": "div",
+                  "props": {
+                    "className": "py-1 px-2 border border-background/60 text-left"
+                  },
+                  "children": [
+                    "Acsenda School of Management"
+                  ]
+                },
+                {
+                  "type": "div",
+                  "props": {
+                    "className": "py-1 px-2 border border-background/60 text-left"
+                  },
+                  "children": [
+                    "Selkirk College"
+                  ]
+                },
+                {
+                  "type": "div",
+                  "props": {
+                    "className": "py-1 px-2 border border-background/60 text-left"
+                  },
+                  "children": [
+                    "College of Rockies"
+                  ]
+                },
+                {
+                  "type": "div",
+                  "props": {
+                    "className": "py-1 px-2 border border-background/60 text-left"
+                  },
+                  "children": [
+                    "Seneca College"
+                  ]
+                },
+                {
+                  "type": "div",
+                  "props": {
+                    "className": "py-1 px-2 border border-background/60 text-left"
+                  },
+                  "children": [
+                    "Conestoga College"
+                  ]
+                },
+                {
+                  "type": "div",
+                  "props": {
+                    "className": "py-1 px-2 border border-background/60 text-left"
+                  },
+                  "children": [
+                    "St. Clair College"
+                  ]
+                },
+                {
+                  "type": "div",
+                  "props": {
+                    "className": "py-1 px-2 border border-background/60 text-left"
+                  },
+                  "children": [
+                    "Durham College"
+                  ]
+                },
+                {
+                  "type": "div",
+                  "props": {
+                    "className": "py-1 px-2 border border-background/60 text-left"
+                  },
+                  "children": [
+                    "Suncrest College"
+                  ]
+                },
+                {
+                  "type": "div",
+                  "props": {
+                    "className": "py-1 px-2 border border-background/60 text-left"
+                  },
+                  "children": [
+                    "Eton College"
+                  ]
+                },
+                {
+                  "type": "div",
+                  "props": {
+                    "className": "py-1 px-2 border border-background/60 text-left"
+                  },
+                  "children": [
+                    "Taylor Pro College"
+                  ]
+                },
+                {
+                  "type": "div",
+                  "props": {
+                    "className": "py-1 px-2 border border-background/60 text-left"
+                  },
+                  "children": [
+                    "Fleming College Toronto"
+                  ]
+                },
+                {
+                  "type": "div",
+                  "props": {
+                    "className": "py-1 px-2 border border-background/60 text-left"
+                  },
+                  "children": [
+                    "Toronto School of Management"
+                  ]
+                },
+                {
+                  "type": "div",
+                  "props": {
+                    "className": "py-1 px-2 border border-background/60 text-left"
+                  },
+                  "children": [
+                    "Georgian College"
+                  ]
+                },
+                {
+                  "type": "div",
+                  "props": {
+                    "className": "py-1 px-2 border border-background/60 text-left"
+                  },
+                  "children": [
+                    "Trent University"
+                  ]
+                },
+                {
+                  "type": "div",
+                  "props": {
+                    "className": "py-1 px-2 border border-background/60 text-left"
+                  },
+                  "children": [
+                    "Lakeland College"
+                  ]
+                },
+                {
+                  "type": "div",
+                  "props": {
+                    "className": "py-1 px-2 border border-background/60 text-left"
+                  },
+                  "children": [
+                    "Trinity Western University"
+                  ]
+                },
+                {
+                  "type": "div",
+                  "props": {
+                    "className": "py-1 px-2 border border-background/60 text-left"
+                  },
+                  "children": [
+                    "Niagara College Toronto"
+                  ]
+                },
+                {
+                  "type": "div",
+                  "props": {
+                    "className": "py-1 px-2 border border-background/60 text-left"
+                  },
+                  "children": [
+                    "University Canada West"
+                  ]
+                },
+                {
+                  "type": "div",
+                  "props": {
+                    "className": "py-1 px-2 border border-background/60 text-left"
+                  },
+                  "children": [
+                    "Nipissing University"
+                  ]
+                },
+                {
+                  "type": "div",
+                  "props": {
+                    "className": "py-1 px-2 border border-background/60 text-left"
+                  },
+                  "children": [
+                    "Wilfrid Laurier University"
+                  ]
+                },
+                {
+                  "type": "div",
+                  "props": {
+                    "className": "py-1 px-2 border border-background/60 text-left"
+                  },
+                  "children": [
+                    "Northern Lights College"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "CTADefault",
+      "props": {
+        "image": "/service.jpg",
+        "title": "Chúng tôi có thể giúp bạn",
+        "description": "<div className=\"flex flex-col gap-2 mt-4\">\r\n            <p className=\"text-lg text-white\">\r\n              iCan PR hiểu rằng di trú/ định cư tại Canada là một hành trình\r\n              nhiều thay đổi và thách thức. Mục tiêu và nhiệm vụ của chúng tôi\r\n              là trở thành đối tác đáng tin cậy của bạn trong hành trình này.\r\n            </p>\r\n            <p className=\"text-lg text-white\">\r\n              Chúng tôi mong muốn giúp bạn hiện thực hóa ước mơ định cư Canada,\r\n              sẵn sàng chào đón những cơ hội mới tại đây.\r\n            </p>\r\n          </div>"
+      },
+      "children": []
+    }
+  ]
+}

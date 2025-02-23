@@ -1,0 +1,266 @@
+[
+  {
+    "type": "Container",
+    "props": {
+      "className": "flex flex-col gap-10"
+    },
+    "children": [
+      {
+        "type": "Title",
+        "props": {
+          "title": "Giới thiệu về công ty",
+          "subtitle": "Ưu Thế của iCANPR",
+          "description": "Tại iCANPR, chúng tôi tự hào về mạng lưới đối tác mạnh mẽ và đa dạng, từ các tổ chức giáo dục, nhà tuyển dụng, đến các luật sư di trú hàng đầu tại Canada. Chúng tôi tự tin cung cấp thông tin cập nhật và chính xác nhất và đảm bảo gia đình bạn nhận được sự hỗ trợ toàn diện trong suốt quá trình từ tư vấn, hoàn thiện hồ sơ đến ổn định và xây dựng cuộc sống mới tại Canada"
+        },
+        "children": []
+      },
+      {
+        "type": "div",
+        "props": {
+          "className": "flex gap-6 md:flex-row flex-col"
+        },
+        "children": [
+          {
+            "type": "HoverCard",
+            "props": {
+              "title": "\"Quan Hệ Chặt Chẽ với Nhà Tuyển Dụng\"",
+              "color": "bg-yellow-400",
+              "icon": "\"game-icons:relationship-bounds\"",
+              "description": "\"Mạng lưới luật sư di trú của chúng tôi sẽ đảm bảo mọi thủ tục pháp lý của bạn được thực hiện chính xác và nhanh chóng, giúp giảm thiểu rủi ro và thời gian chờ đợi.\"",
+              "link": "/doi-tac-icanpr"
+            },
+            "children": []
+          },
+          {
+            "type": "HoverCard",
+            "props": {
+              "color": "bg-green-400",
+              "title": "\"Liên Kết với Các Tổ Chức Giáo Dục:\"",
+              "icon": "\"cil:education\"",
+              "description": "\"Chúng tôi hợp tác chặt chẽ với nhiều trường đại học, cao đẳng uy tín tại Canada, giúp bạn có nhiều lựa chọn về học tập và các chương trình học bổng\"",
+              "link": "/doi-tac-icanpr"
+            },
+            "children": []
+          },
+          {
+            "type": "HoverCard",
+            "props": {
+              "color": "bg-sky-400",
+              "title": "\"Hỗ Trợ Pháp Lý Từ Các Luật Sư Di Trú\"",
+              "icon": "\"streamline:legal-justice-hammer-hammer-work-legal-mallet-office-company-gavel-justice-judge-arbitration-court\"",
+              "description": "\"Mạng lưới luật sư di trú của chúng tôi sẽ đảm bảo mọi thủ tục pháp lý của bạn được thực hiện chính xác và nhanh chóng, giúp giảm thiểu rủi ro và thời gian chờ đợi.\"",
+              "link": "#"
+            },
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Container",
+    "props": {
+      "effect": "slide-left"
+    },
+    "children": [
+      {
+        "type": "Glass",
+        "props": {
+          "className": "flex flex-col lg:flex-row  gap-10 md:gap-2 h-max px-10 py-10"
+        },
+        "children": [
+          {
+            "type": "div",
+            "props": {
+              "className": "w-full md:flex-1 flex flex-col gap-2"
+            },
+            "children": [
+              {
+                "type": "TitleWithDoubleBorder",
+                "props": {},
+                "children": [
+                  "iCanPR"
+                ]
+              },
+              {
+                "type": "div",
+                "props": {
+                  "className": "flex flex-col justify-start gap-6"
+                },
+                "children": [
+                  {
+                    "type": "TitleWithBottomBorder",
+                    "props": {
+                      "titleClass": "md:text-xl text-left"
+                    },
+                    "children": [
+                      "Chuyên môn"
+                    ]
+                  },
+                  {
+                    "type": "p",
+                    "props": {
+                      "className": "text-sm text-black/60 text-left"
+                    },
+                    "children": [
+                      "Chào mừng đến với iCANPR, nơi chúng tôi giúp bạn thực hiện giấc\n                mơ định cư tại Canada."
+                    ]
+                  },
+                  {
+                    "type": "p",
+                    "props": {
+                      "className": "text-sm text-black/60 text-left"
+                    },
+                    "children": [
+                      "Với đội ngũ chuyên gia giàu kinh nghiệm và mạng lưới đối tác\n                rộng khắp, chúng tôi cam kết mang đến cho bạn giải pháp định cư\n                tối ưu nhất."
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "div",
+            "props": {
+              "className": "w-full  md:flex-1 flex flex-col gap-3 justify-center items-center h-max"
+            },
+            "children": [
+              {
+                "type": "ul",
+                "props": {
+                  "className": "grid grid-cols-1 lg:grid-cols-2 gap-6 justify-center"
+                },
+                "children": [
+                  {
+                    "type": "li",
+                    "props": {
+                      "className": "text-center flex gap-1 justify-center bg-highlight/80 font-primary tracking-widest px-8 w-full md:w-[200px]  flex-col items-center text-white/90 py-6"
+                    },
+                    "children": [
+                      {
+                        "type": "Icon",
+                        "props": {
+                          "icon": "\"hugeicons:job-search\"",
+                          "className": "text-4xl"
+                        },
+                        "children": []
+                      },
+                      "Cơ hội việc làm cho người nước ngoài"
+                    ]
+                  },
+                  {
+                    "type": "li",
+                    "props": {
+                      "className": "text-center flex gap-1 justify-center bg-background/80 font-primary tracking-widest px-8 py-6 w-full md:w-[200px]  flex-col items-center text-white/90"
+                    },
+                    "children": [
+                      {
+                        "type": "Icon",
+                        "props": {
+                          "icon": "\"streamline:money-graph-bar-increase-up-product-performance-increase-arrow-graph-business-chart\"",
+                          "className": "text-4xl"
+                        },
+                        "children": []
+                      },
+                      "Thành lập doanh nghiệp tại Canada"
+                    ]
+                  },
+                  {
+                    "type": "li",
+                    "props": {
+                      "className": "text-center flex gap-1 justify-center bg-background/80  font-primary tracking-widest px-8 py-6 w-full md:w-[200px]  flex-col items-center text-white/90"
+                    },
+                    "children": [
+                      {
+                        "type": "Icon",
+                        "props": {
+                          "icon": "\"material-symbols:conversion-path\"",
+                          "className": "text-4xl"
+                        },
+                        "children": []
+                      },
+                      "Lộ trình từ du học đến định cư Canada"
+                    ]
+                  },
+                  {
+                    "type": "li",
+                    "props": {
+                      "className": "text-center flex gap-1 justify-center bg-highlight/80 font-primary tracking-widest px-8 py-6 w-full md:w-[200px]  flex-col items-center text-white/90"
+                    },
+                    "children": [
+                      {
+                        "type": "Icon",
+                        "props": {
+                          "icon": "\"ph:chalkboard-teacher-bold\"",
+                          "className": "text-4xl"
+                        },
+                        "children": []
+                      },
+                      "Xử lý hồ sơ bị từ chối bởi IRCC Canada"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Container",
+    "props": {},
+    "children": [
+      {
+        "type": "Title",
+        "props": {
+          "title": "\"ICANPR\"",
+          "subtitle": "Các chương trình định cư phổ biến"
+        },
+        "children": []
+      }
+    ]
+  },
+  {
+    "type": "div",
+    "props": {
+      "className": " flex flex-col gap-10"
+    },
+    "children": [
+      {
+        "type": "CTAWithImage",
+        "props": {
+          "title": "\"Chương TRÌNH đề cử tỉnh bang\"",
+          "subtitle": "\"Alberta\"",
+          "description": "<div className=\"flex flex-col gap-2 justify-start items-start\">\r\n              <p className=\"text-left\">\r\n                Chương trình Ưu tiên đề cử tỉnh bang của Alberta (AAIP) – trước\r\n                đây được gọi là Chương trình Đề cử Nhập cư Alberta (AINP) – đã\r\n                trở thành một trong những chương trình lao động định cư phổ biến\r\n                nhất của Canada, cung cấp quyền thường trú nhân Canada cho các\r\n                công nhân và doanh nhân nước ngoài có tay nghề cao.\r\n              </p>\r\n              <p className=\"text-left\">\r\n                <UL>\r\n                  <List>\r\n                    Chương trình nhập cư ngành Du lịch và Dịch vụ – Alberta\r\n                    Tourism & Hospitality Stream (THS).\r\n                  </List>\r\n                  <List>\r\n                    Chương trình cơ hội nhập cư tại Alberta (Alberta Opportunity\r\n                    Stream).\r\n                  </List>\r\n                  <List>\r\n                    Chương trình nhập cư Alberta thông qua Express Entry\r\n                    (Alberta Express Entry Stream).\r\n                  </List>\r\n                  <List>\r\n                    Chương trình Đổi mới nông thôn ( Rural Renewal Stream).\r\n                  </List>\r\n                </UL>\r\n              </p>\r\n            </div>",
+          "image": "alberta",
+          "ctaAction": "\"Xem thêm chương trình AAIP\"",
+          "link": "/de-cu-tinh-bang-pnp/alberta-nhap-cu-aaip"
+        },
+        "children": []
+      },
+      {
+        "type": "CTAWithImage",
+        "props": {
+          "flip": "true",
+          "title": "\"Chương TRÌNH đề cử tỉnh bang\"",
+          "subtitle": "\"Saskatchewan\"",
+          "description": "<div className=\"flex flex-col gap-2 justify-start items-start\">\r\n              <p className=\"text-left\">\r\n                Chương trình đề cử của tỉnh bang Saskatchewan (SINP) mở ra cơ\r\n                hội cho công dân quốc tế nộp đơn xin thường trú (PR) tại Canada\r\n                với thời gian xét duyệt nhanh hơn các chương trình nhập cư khác,\r\n                bao gồm:\r\n              </p>\r\n              <p className=\"text-left\">\r\n                <UL>\r\n                  <List>\r\n                    Saskatchewan International Skilled Worker: dành cho đối\r\n                    tượng lao động lành nghề muốn sinh sống, làm việc ở\r\n                    Saskatchewan.\r\n                  </List>\r\n                  <List>\r\n                    Saskatchewan Experience: dành cho người lao động có giấy\r\n                    phép làm việc và sinh viên tốt nghiệp quốc tế đang sống và\r\n                    làm việc tại Saskatchewan.\r\n                  </List>\r\n                  <List>\r\n                    Saskatchewan Entrepreneur and Farm: Dành cho doanh nhân, nhà\r\n                    đầu tư có kế hoạch khởi nghiệp hoặc mua lại một trang trại ở\r\n                    Saskatchewan.\r\n                  </List>\r\n                </UL>\r\n              </p>\r\n            </div>",
+          "image": "saskatchewan-a",
+          "ctaAction": "\"Xem thêm về SINP\"",
+          "link": "/de-cu-tinh-bang-pnp/saskatchewan-sinp"
+        },
+        "children": []
+      }
+    ]
+  },
+  {
+    "type": "CTADefault",
+    "props": {
+      "title": "Chúng tôi có thể giúp bạn\r\n",
+      "subtitle": "<p className=\"text-lg text-white/90\">\r\n            iCan PR hiểu rằng di trú/ định cư tại Canada là một hành trình nhiều\r\n            thay đổi và thách thức.\r\n            <br /> Mục tiêu và nhiệm vụ của chúng tôi trở thành đối tác đáng tin\r\n            cậy của bạn trong hành trình này. Chúng tôi mong <br />\r\n            muốn giúp bạn hiện thực hóa ước mơ định cư Canada, sẳn sàng chào đón\r\n            những cơ hội mới tại đây.\r\n          </p>",
+      "image": "\"service\""
+    },
+    "children": []
+  }
+]

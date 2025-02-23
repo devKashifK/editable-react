@@ -1,0 +1,279 @@
+[
+  {
+    "type": "Hero",
+    "props": {
+      "backgroundImage": "hero-33.jpg",
+      "title": "Hiện Thực Hóa Giấc Mơ Canada Của Bạn",
+      "description": "Hành trình đến Canada của bạn bắt đầu từ đây. Chúng tôi cung cấp dịch vụ di trú toàn diện được thiết kế riêng cho nhu cầu của bạn, đảm bảo quá trình chuyển đổi suôn sẻ đến cuộc sống mới tại Canada.",
+      "features": [
+        {
+          "icon": "carbon:document",
+          "title": "Giải Pháp Di Trú",
+          "description": "Chiến lược di trú được thiết kế riêng cho từng hoàn cảnh cụ thể của bạn"
+        },
+        {
+          "icon": "carbon:partnership",
+          "title": "Kết Nối Việc Làm",
+          "description": "Kết nối trực tiếp với các nhà tuyển dụng tại Canada"
+        },
+        {
+          "icon": "carbon:home",
+          "title": "Hỗ Trợ Định Cư",
+          "description": "Hỗ trợ toàn diện cho cuộc sống mới của bạn tại Canada"
+        }
+      ],
+      "buttons": [
+        {
+          "icon": "teenyicons:appointments-outline",
+          "text": "Tư Vấn Miễn Phí",
+          "link": "/lien-he",
+          "variant": "primary"
+        },
+        {
+          "icon": "carbon:service",
+          "text": "Dịch Vụ Của Chúng Tôi",
+          "link": "/dich-vu",
+          "variant": "outline"
+        }
+      ]
+    },
+    "children": []
+  },
+  {
+    "type": "div",
+    "props": {
+      "className": "py-10 sm:py-10 flex flex-col gap-12"
+    },
+    "children": [
+      {
+        "type": "NewsShowcase",
+        "props": {},
+        "children": []
+      },
+      {
+        "type": "Container",
+        "props": {
+          "className": "gap-10"
+        },
+        "children": [
+          {
+            "type": "Title",
+            "props": {
+              "subtitle": "Chúng tôi tự tin có thể giúp giấc mơ Canada của gia đình bạn thành sự thật",
+              "title": "Các chương trình định cư phù hợp cho người Việt",
+              "description": "<div className=\"flex flex-col gap-3 mt-2\">\r\n                <p className=\"text-black/50 text-center\">\r\n                  Canada có nhiều chương trình định cư, nhưng phù hợp và lộ\r\n                  trình nhanh nhất cho người Việt là các chương trình AINP\r\n                  (Alberta Immigrant Nominee Program) của tỉnh bang Alberta và\r\n                  SINP (Saskatchewan Immigrant Nominee Program) của tỉnh bang\r\n                  Saskatchewan dành cho lao động lành nghề.\r\n                </p>\r\n                <p className=\"text-black/50 text-center\">\r\n                  Bên cạnh đó, chương trình C11 mở ra cánh cửa nhập cư cho doanh\r\n                  nhân, chủ doanh nghiệp với vốn đầu tư tối thiểu chỉ CAD\r\n                  100.000.\r\n                </p>\r\n              </div>"
+            },
+            "children": []
+          },
+          {
+            "type": "div",
+            "props": {
+              "className": "flex flex-wrap gap-5"
+            },
+            "children": [
+              {
+                "type": "CardWithImage",
+                "props": {
+                  "image": "/alberta.png",
+                  "title": "Alberta",
+                  "description": "Nổi bật với chương trình Alberta Rural Renewal, mang lại cơ hội xin PR trực tiếp từ Việt Nam cho lao động lành nghề"
+                },
+                "children": []
+              },
+              {
+                "type": "CardWithImage",
+                "props": {
+                  "image": "/saskatchewan.jpg",
+                  "title": "Saskatchewan",
+                  "description": "Lộ trình Saskatchewan Experience cho phép người lao động xin đề cử tỉnh bang & PR sau 6 tháng làm việc. Xin PR từ Việt Nam với JAL"
+                },
+                "children": []
+              },
+              {
+                "type": "CardWithImage",
+                "props": {
+                  "image": "/atlantic.png",
+                  "title": "Atlantic",
+                  "description": "Lộ trình Atlantic Experience cho phép người lao động xin đề cử tỉnh bang & PR sau 6 tháng làm việc. Xin PR từ Việt Nam với JAL"
+                },
+                "children": []
+              },
+              {
+                "type": "CardWithImage",
+                "props": {
+                  "image": "/british.jpg",
+                  "title": "British Columbia",
+                  "description": "British Columbia (BC) là một tỉnh bang ở phía tây Canada, nổi tiếng với cảnh quan thiên nhiên tuyệt đẹp và đa dạng."
+                },
+                "children": []
+              },
+              {
+                "type": "CardWithImage",
+                "props": {
+                  "image": "/ontario.png",
+                  "title": "Ontario",
+                  "description": "Chương trình Đề cử tỉnh bang Ontario (OINP) là chương trình nhập cư chính của tỉnh bang Ontario."
+                },
+                "children": []
+              },
+              {
+                "type": "CardWithImage",
+                "props": {
+                  "image": "/manitoba.png",
+                  "title": "Manitoba",
+                  "description": "Chương trình đề cử tỉnh bang Manitoba (MPNP) giúp phát triển nền kinh tế của tỉnh bang, dựa trên nhu cầu kinh tế và thị trường lao động."
+                },
+                "children": []
+              },
+              {
+                "type": "CardWithImage",
+                "props": {
+                  "image": "/newbrunswick.png",
+                  "title": "New Brunswick",
+                  "description": "Chương trình Đề cử Tỉnh bang New Brunswick (NBPNP) nhằm thu hút và giữ chân những người lao động lành nghề."
+                },
+                "children": []
+              },
+              {
+                "type": "CardWithImage",
+                "props": {
+                  "image": "/province/prince/a.png",
+                  "title": "Prince Edward Island",
+                  "description": "Prince Edward Island là một tỉnh bang nhỏ nằm ở phía Đông của Canada."
+                },
+                "children": []
+              },
+              {
+                "type": "CardWithImage",
+                "props": {
+                  "image": "/yukon.jpg",
+                  "title": "Yukon",
+                  "description": "Yukon là một tỉnh bang nhỏ nằm ở phía Đông của Canada."
+                },
+                "children": []
+              },
+              {
+                "type": "CardWithImage",
+                "props": {
+                  "image": "/province/newfoundland/a.png",
+                  "title": "New Foundland",
+                  "description": "New Foundland là một tỉnh bang nhỏ nằm ở phía Đông của Canada."
+                },
+                "children": []
+              },
+              {
+                "type": "CardWithImage",
+                "props": {
+                  "image": "/novaScotia.jpg",
+                  "title": "Nova Scotia",
+                  "description": "Nova Scotia là một tỉnh bang nhỏ nằm ở phía Đông của Canada."
+                },
+                "children": []
+              },
+              {
+                "type": "CardWithImage",
+                "props": {
+                  "image": "/province/quebec/a.png",
+                  "title": "Quebec",
+                  "description": "Quebec là một tỉnh bang nhỏ nằm ở phía Đông của Canada."
+                },
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "OurService",
+        "props": {
+          "services": [
+            {
+              "id": "settle-in-canada",
+              "icon": "material-symbols:add-location",
+              "title": "Định cư Canada",
+              "description": "Chọn Canada để định cư là một quyết định thú vị và thay đổi cuộc đời. Canada nổi tiếng với chất lượng cuộc sống, sự đa dạng văn hóa và hứa hẹn nhiều cơ hội. Hãy cùng tìm kiếm lựa chọn định cư phù hợp nhất cho gia đình bạn!",
+              "ctaText": "Tìm hiểu thêm",
+              "ctaLink": "/immigration/dinh-cu-canada",
+            },
+            {
+              "id": "work-in-canada",
+              "title": "Làm việc tại Canada",
+              "icon": "Briefcase",
+              "description": "Canada với nhiều cơ hội việc làm đa dạng, thúc đẩy sự phát triển nghề nghiệp và trải nghiệm toàn cầu. Là một quốc gia phồn thịnh và thân thiện đang chào đón các chuyên gia có kỹ năng và người lao động thời vụ.",
+              "ctaText": "Khám phá cơ hội",
+              "ctaLink": "/immigration/nhap-canh-nhanh/cong-nhan-lanh-nghe-lien-bang"
+            },
+            {
+              "id": "study-in-canada",
+              "icon": "fxemoji:graduationcap",
+              "title": "Du học tại Canada",
+              "description": "Học tập tại Canada chắc chắn mang đến cho bạn một giáo dục hàng đầu thế giới, sự đa dạng văn hóa phong phú và một lối đi tới tương lai đầy triển vọng, tất cả trong một môi trường thân thiện và mở cửa, đón nhận sự đa dạng.",
+              "ctaText": "Tìm hiểu chương trình",
+              "ctaLink": "/immigration/du-hoc-dinh-cu"
+            },
+            {
+              "id": "family-sponsorship",
+              "icon": "material-symbols:favorite",
+              "title": "Bảo Lãnh",
+              "description": "Với kiến thức chuyên sâu về luật di trú và quy trình đoàn tụ gia đình tại Canada, chúng tôi cam kết hỗ trợ bạn trong việc kết nối và tái hợp với người thân yêu của mình, tạo nên những khoảnh khắc đáng trân trọng và ấm áp tại Canada.",
+              "ctaText": "Xem thêm chi tiết",
+              "ctaLink": "/immigration/family-sponsorship"
+            }
+          ]
+        },
+        "children": []
+      },
+      {
+        "type": "CTAWithImage",
+        "props": {
+          "flip": "true",
+          "title": "Chúng tôi luôn sẵn sàng hiện thực hóa giấc mơ nhập cư của bạn",
+          "subtitle": "Hãy tin tưởng công ty chúng tôi",
+          "description": "<div className=\"flex flex-col gap-2 justify-start items-start\">\r\n              <p className=\"text-left\">\r\n                Cùng ICanPR hành trình định cư Canada của gia đình bạn sẽ trở\r\n                nên dễ dàng hơn.\r\n              </p>\r\n              <p className=\"text-left\">\r\n                Đội ngũ chuyên gia kinh nghiệm của chúng tôi cam kết đồng hành\r\n                cùng sự thành công của bạn.\r\n              </p>\r\n            </div>",
+          "image": "graduate",
+          "ctaAction": "Hãy cùng bắt đầu hành trình thay đổi cuộc sống này cùng nhau nào!",
+          "link": "/ve-icanpr"
+        },
+        "children": []
+      },
+      {
+        "type": "Container",
+        "props": {
+          "effect": "none",
+          "className": "flex flex-col gap-10"
+        },
+        "children": [
+          {
+            "type": "Title",
+            "props": {
+              "cta": "All News & Events",
+              "subtitle": "Tin Tức Di Trú",
+              "title": "Tin Tức & Sự Kiện Mới Nhất",
+              "to": "/news"
+            },
+            "children": []
+          }
+        ]
+      },
+      {
+        "type": "CTADefault",
+        "props": {
+          "image": "service.jpg",
+          "title": "Chúng tôi có thể giúp bạn",
+          "description": "<div className=\"flex flex-col gap-2 mt-4\">\r\n              <p className=\"text-lg text-white\">\r\n                iCan PR hiểu rằng di trú/ định cư tại Canada là một hành trình\r\n                nhiều thay đổi và thách thức.\r\n              </p>\r\n              <p className=\"text-lg text-white\">\r\n                Chúng tôi mong muốn giúp bạn hiện thực hóa ước mơ định cư\r\n                Canada.\r\n              </p>\r\n            </div>"
+        },
+        "children": []
+      },
+      {
+        "type": "InfiniteMovingCardsDemo",
+        "props": {},
+        "children": []
+      }
+    ]
+  },
+  {
+    "type": "Footer",
+    "props": {},
+    "children": []
+  }
+]
