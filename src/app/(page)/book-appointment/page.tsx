@@ -1,12 +1,11 @@
 "use client";
-import { Feature } from "@/components/ui/cards-set";
+import { ContactForm } from "@/app/(pages)/lien-he/contact";
 import Container from "@/components/ui/container";
 import Title from "@/components/ui/Title";
 import Glass from "@/lib/helpers";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import React from "react";
 import CountUp from "react-countup";
-import { ContactForm } from "../../(pages)/lien-he/page";
 
 export default function BookAppointment() {
   return (

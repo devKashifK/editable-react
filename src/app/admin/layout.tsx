@@ -1,14 +1,8 @@
 "use client";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
-import db from "@/components/db/db";
-import { useQuery } from "@tanstack/react-query";
 
-export default function Layout({children}: {children: React.ReactNode}) {
-  
-
-
-
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="h-full bg-gradient-to-br from-gray-50 via-gray-100 to-gray-50 flex">
       {/* Sidebar */}
@@ -16,7 +10,7 @@ export default function Layout({children}: {children: React.ReactNode}) {
         <div className="p-6">
           <h2 className="text-xl font-bold text-gray-800 mb-6">Dashboard</h2>
           <nav className="space-y-2">
-          <Link
+            <Link
               href="/"
               className="flex items-center gap-2 px-4 py-2 text-gray-700 bg-gray-50 rounded-lg"
             >
@@ -42,9 +36,7 @@ export default function Layout({children}: {children: React.ReactNode}) {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 p-8 max-h-screen overflow-y-auto">
-      {children}
-      </div>
+      <div className="flex-1 p-8 max-h-screen overflow-y-auto">{children}</div>
     </div>
   );
 }
