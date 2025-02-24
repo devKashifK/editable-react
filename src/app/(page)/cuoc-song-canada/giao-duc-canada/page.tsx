@@ -1,29 +1,11 @@
 import Container from "@/components/ui/container";
-import { getDataBySlug } from "@/components/ui/dynamic-component";
-import { DynamicComponent } from "@/components/ui/dynamic-component";
-import React, { use } from "react";
+import React from "react";
 
-// export default function Education({ slug }) {
-//   const pageData = use(getDataBySlug("giao-duc-canada"));
-
-//   // Check if pageData and pageData.content are available
-//   if (!pageData) return <p>Loading...</p>;
-//   if (!pageData.content || !Array.isArray(pageData.content)) {
-//     console.error("No content array found in pageData:", pageData); // Log error details
-//     return <p>No components to display</p>;
-//   }
-
-//   return (
-//     <div className="flex flex-col gap-10">
-//       {pageData.content.map(
-//         (componentData, index) => (
-//           console.log(componentData, "componentData"),
-//           (<DynamicComponent key={index} data={componentData} />)
-//         )
-//       )}
-//     </div>
-//   );
-// }
+type Section = {
+  title: string;
+  content: string;
+  subsections?: Record<string, { title: string; content: string }>;
+};
 
 export default function Education() {
   return (
@@ -40,8 +22,8 @@ export default function Education() {
                 {section.content}
               </p>
 
-              {section.subsections &&
-                Object.entries(section.subsections).map(
+              {section?.subsections &&
+                Object.entries(section?.subsections).map(
                   ([subKey, subsection]) => (
                     <div key={subKey} className="">
                       <h3 className="text-2xl font-semibold mb-2 text-left">
@@ -61,7 +43,7 @@ export default function Education() {
   );
 }
 
-const studyInCanadaInfo = [
+const studyInCanadaInfo: Array<Record<string, Section>> = [
   {
     WhyStudyInCanada: {
       title: "Tại sao học đại học tại Canada?",
