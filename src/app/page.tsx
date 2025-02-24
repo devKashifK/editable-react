@@ -1,10 +1,10 @@
 import BlinkingNavbar from "@/components/ui/blinking-navbar";
-import Home from "../../pages/home";
+import PageRenderer from "@/components/ui/renderer";
 
 export default function page() {
   return (
     <div className="relative">
-      <Home />
+      <PageRenderer name="home" key="home" />;
       <BlinkingNavbar />
     </div>
   );
