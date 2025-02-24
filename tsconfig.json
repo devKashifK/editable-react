@@ -39,7 +39,6 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/app/(page)/book-appointment"
   ],
   "exclude": [
     "node_modules"
