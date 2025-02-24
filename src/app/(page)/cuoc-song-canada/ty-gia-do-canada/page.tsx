@@ -27,12 +27,16 @@ import TitleWithDoubleBorder from "@/components/ui/title-with-double-border";
 //   );
 // }
 
-type Section = {
+export type Subsection = {
   title: string;
   content: string;
-  subsections?: Record<string, { title: string; content: string }>;
 };
 
+export type Section = {
+  title: string;
+  content: string;
+  subsections?: Record<string, Subsection>;
+};
 export default function ExchangeRate() {
   return (
     <Container className="flex flex-col gap-8 py-20">
@@ -83,6 +87,7 @@ const exchangeRateInfo: Array<Record<string, Section>> = [
     },
     FactorsAffectingExchangeRate: {
       title: "Các yếu tố ảnh hưởng đến tỷ giá hối đoái của đô la Canada",
+      content: "",
       subsections: {
         OilPrice: {
           title: "Giá dầu",
@@ -108,6 +113,7 @@ const exchangeRateInfo: Array<Record<string, Section>> = [
     },
     ImpactOnImmigrants: {
       title: "Tác động của tỷ giá hối đoái đến người định cư",
+      content: "",
       subsections: {
         LivingCost: {
           title: "Chi phí sinh hoạt",
@@ -128,6 +134,7 @@ const exchangeRateInfo: Array<Record<string, Section>> = [
     },
     AdviceForImmigrants: {
       title: "Lời khuyên cho người định cư về tỷ giá hối đoái",
+      content: "",
       subsections: {
         MonitorExchangeRate: {
           title: "Theo dõi tỷ giá",
