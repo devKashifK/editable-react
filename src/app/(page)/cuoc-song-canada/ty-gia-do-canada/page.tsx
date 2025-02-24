@@ -1,12 +1,9 @@
 // import NewsShowcase from "../../news.tsx/news-showcase";
 
 import Container from "@/components/ui/container";
-import { getDataBySlug } from "@/components/ui/dynamic-component";
-import { DynamicComponent } from "@/components/ui/dynamic-component";
 import { ServicesCard } from "@/components/ui/services-card";
 import TitleWithBottomBorder from "@/components/ui/title-with-bottom-border";
 import TitleWithDoubleBorder from "@/components/ui/title-with-double-border";
-import { use } from "react";
 
 // export default function ExchangeRate({ slug }) {
 //   const pageData = use(getDataBySlug("ty-gia-do-canada"));
@@ -29,6 +26,12 @@ import { use } from "react";
 //     </div>
 //   );
 // }
+
+type Section = {
+  title: string;
+  content: string;
+  subsections?: Record<string, { title: string; content: string }>;
+};
 
 export default function ExchangeRate() {
   return (
@@ -71,7 +74,7 @@ export default function ExchangeRate() {
   );
 }
 
-const exchangeRateInfo = [
+const exchangeRateInfo: Array<Record<string, Section>> = [
   {
     ExchangeRateDefinition: {
       title: "Tỷ giá hối đoái là gì?",

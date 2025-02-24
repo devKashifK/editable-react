@@ -1,7 +1,5 @@
 import { CardWithImage } from "@/components/ui/card-with-image";
 import { CTADefault } from "@/components/ui/cta";
-import { getDataBySlug } from "@/components/ui/dynamic-component";
-import { DynamicComponent } from "@/components/ui/dynamic-component";
 import { List, UL } from "@/components/ui/list";
 import Glass from "@/lib/helpers";
 import React from "react";

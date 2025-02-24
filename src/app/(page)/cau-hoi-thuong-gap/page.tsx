@@ -2,7 +2,7 @@
 import Container from "@/components/ui/container";
 import { FaqCard } from "@/components/ui/faq-card";
 import Title from "@/components/ui/Title";
-import React, { useState } from "react";
+import React from "react";
 
 export default function FaqUseful() {
   return (
