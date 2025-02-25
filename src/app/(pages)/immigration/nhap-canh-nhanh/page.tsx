@@ -4,7 +4,7 @@ import Container from "@/components/ui/container";
 import Title from "@/components/ui/Title";
 import Glass from "@/lib/helpers";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { FAQ } from "./federal-skilled-worker";
+// import { FAQ } from "./federal-skilled-worker";
 import { ServicesCard } from "@/components/ui/services-card";
 // import { truncateTextHeading } from "@/components/ui/newsCard";
 
@@ -85,7 +85,7 @@ export default function ExpressEntry() {
           }
         />
         <div className="py-6 ">
-          {faqFederal.map((item, index) => {
+          {/* {faqFederal.map((item, index) => {
             return (
               <FAQ
                 key={index}
@@ -94,7 +94,7 @@ export default function ExpressEntry() {
                 description={item.description()}
               />
             );
-          })}
+          })} */}
         </div>
       </Container>
       <Container>
