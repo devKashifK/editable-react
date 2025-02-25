@@ -6,7 +6,7 @@ import Glass from "@/lib/helpers";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { FAQ } from "./federal-skilled-worker";
 import { ServicesCard } from "@/components/ui/services-card";
-import { truncateTextHeading } from "@/components/ui/newsCard";
+// import { truncateTextHeading } from "@/components/ui/newsCard";
 
 export default function ExpressEntry() {
   return (
@@ -61,7 +61,7 @@ export default function ExpressEntry() {
                 key={index}
                 id={item.id}
                 title={item.title}
-                description={truncateTextHeading(item.description, 30)}
+                description={item.description}
               />
             ))}
           </div>
