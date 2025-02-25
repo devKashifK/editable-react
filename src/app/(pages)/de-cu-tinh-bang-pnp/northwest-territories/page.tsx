@@ -2,7 +2,7 @@ import Container from "@/components/ui/container";
 import Title from "@/components/ui/Title";
 import Glass from "@/lib/helpers";
 import { Feature } from "@/components/ui/cards-set";
-import { featuresPage } from "../alberta-nhap-cu-aaip/page";
+// import { featuresPage } from "../alberta-nhap-cu-aaip/page";
 
 export default function NorthwestTerritories() {
   return (
@@ -127,9 +127,9 @@ British Columbia provincial nominee program"
       <Container>
         <Glass>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  relative z-10 py-2 max-w-7xl mx-auto">
-            {featuresPage.map((feature, index) => (
+            {/* {featuresPage.map((feature, index) => (
               <Feature key={feature.title} {...feature} index={index} />
-            ))}
+            ))} */}
           </div>
         </Glass>
       </Container>
