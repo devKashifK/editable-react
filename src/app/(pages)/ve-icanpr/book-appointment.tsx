@@ -4,8 +4,8 @@ import Title from "@/components/ui/Title";
 import Glass from "@/lib/helpers";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import React from "react";
-import CountUp, { useCountUp } from "react-countup";
-import { ContactForm } from "../lien-he/page";
+import { ContactForm } from "../lien-he/contact";
+// import CountUp, { useCountUp } from "react-countup";
 
 export default function BookAppointment() {
   return (
@@ -65,11 +65,11 @@ export default function BookAppointment() {
                 className="text-5xl cursor-pointer  rounded-full py-2 px-2"
               />
               <div className="flex gap-2 justify-center items-center">
-                <CountUp
+                {/* <CountUp
                   enableScrollSpy={true}
                   end={100}
                   className="text-6xl"
-                />
+                /> */}
                 <span className="text-4xl">+</span>
               </div>
               <span className="uppercase text-lg font-primary tracking-widest">
@@ -83,7 +83,7 @@ export default function BookAppointment() {
               />
 
               <div className="flex gap-2 justify-center items-center">
-                <CountUp enableScrollSpy={true} end={14} className="text-6xl" />
+                {/* <CountUp enableScrollSpy={true} end={14} className="text-6xl" /> */}
               </div>
               <span className="uppercase text-lg font-primary tracking-widest">
                 Visa khởi nghiệp thành công
@@ -95,7 +95,7 @@ export default function BookAppointment() {
                 className="text-5xl cursor-pointer  rounded-full py-2 px-2"
               />
               <div className="flex gap-2 justify-center items-center">
-                <CountUp enableScrollSpy={true} end={95} className="text-6xl" />
+                {/* <CountUp enableScrollSpy={true} end={95} className="text-6xl" /> */}
                 <span className="text-4xl"> %</span>
               </div>
 
@@ -109,7 +109,7 @@ export default function BookAppointment() {
                 className="text-5xl cursor-pointer rounded-full py-2 px-2"
               />
               <div className="flex gap-2 flex-col  justify-center items-center">
-                <CountUp enableScrollSpy={true} end={3} className="text-6xl" />
+                {/* <CountUp enableScrollSpy={true} end={3} className="text-6xl" /> */}
               </div>
               <span className="uppercase text-lg font-primary tracking-widest">
                 Nhà tư vấn

@@ -18,7 +18,7 @@ import {
 import { ComponentPalette } from "@/components/template-builder/ComponentPalette";
 import { TemplatePreview } from "@/components/template-builder/TemplatePreview";
 import { Button } from "@/components/ui/button";
-import { toast } from "sonner";
+import { toast, Toaster } from "sonner";
 import db from "@/components/db/db";
 import { useRouter } from "next/navigation";
 
@@ -79,6 +79,7 @@ export default function NewTemplate() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <Toaster position="top-right" />
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="flex justify-between items-center mb-8">
           <div>
