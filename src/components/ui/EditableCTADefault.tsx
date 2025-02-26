@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { cn } from "@/lib/utils";
 import parse from "html-react-parser";
 import Glass from "@/lib/helpers";
 import Container from "./container";
 import { ImageUploaderAndPicker } from "./image-picker";
 import EditableDescription from "./EditableDescription";
+import { LinkPage } from "./link-page";
 
 interface EditableCTADefaultProps {
   title?: string;
@@ -13,6 +14,7 @@ interface EditableCTADefaultProps {
   image?: string;
   descriptionClassName?: string;
   onChange: (newProps: Partial<EditableCTADefaultProps>) => void;
+  onClick?: string;
 }
 
 export default function EditableCTADefault({
@@ -22,6 +24,7 @@ export default function EditableCTADefault({
   image,
   descriptionClassName,
   onChange,
+  ...props
 }: EditableCTADefaultProps) {
   const handleContentEdit = (
     field: "title" | "subtitle" | "description",
@@ -29,6 +32,8 @@ export default function EditableCTADefault({
   ) => {
     onChange({ [field]: value });
   };
+
+  const [addLink, setAddLink] = useState<boolean>(false);
 
   const handleImageChange = (newImage: string) => {
     onChange({ image: newImage });
@@ -44,9 +49,8 @@ export default function EditableCTADefault({
         className="flex-col gap-8 py-20 justify-center items-center bg-cover bg-center relative group"
         style={{ backgroundImage: `url(${image})` }}
       >
-        <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity z-10">
+        <LinkPage onClick={props.onClick} addLink={addLink} setAddLink={setAddLink} onChange={onChange} />
           <ImageUploaderAndPicker onChange={handleImageChange} />
-        </div>
         <div className="flex absolute left-0 top-0 w-full h-full bg-black/60"></div>
         <div className="flex flex-col justify-center items-center gap-8 md:gap-3 relative px-8">
           <h4

@@ -1,9 +1,10 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { EditableIcon } from "./editable-icon";
 import EditableDescription from "./EditableDescription";
+import { LinkPage } from "./link-page";
 
 interface EditableHoverCardProps {
   icon?: string | React.ReactNode;
@@ -25,10 +26,13 @@ export default function EditableHoverCard({
   className,
   iconColor,
   onChange,
+  ...props
 }: EditableHoverCardProps) {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const descriptionRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
+
+  const [addLink, setAddLink] = useState(false);
 
   const handleEdit = (field: string, value: string) => {
     if (onChange) {
@@ -59,6 +63,8 @@ export default function EditableHoverCard({
       "border border-white/20 dark:border-gray-800/20",
       className
     )}>
+
+      <LinkPage onClick={props.onClick} addLink={addLink} setAddLink={setAddLink} onChange={onChange} />
       {/* Ambient Light Effect */}
       <div className={cn(
         "absolute inset-0",
@@ -66,6 +72,8 @@ export default function EditableHoverCard({
         color
       )} />
 
+
+     
       {/* Mesh Gradient Background */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1),transparent_60%)] dark:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05),transparent_60%)]" />
 

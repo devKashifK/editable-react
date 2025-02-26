@@ -1,30 +1,43 @@
 "use client";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { useMediaByExactTitle } from "./use-media";
+import { useRouter } from "next/navigation";
 
 export function CardWithImage({
   image,
   title,
   description,
   href = "/",
+  ...props
 }: {
   title?: string;
   description?: React.ReactNode | string;
   image?: string;
   href?: string;
 }) {
+  const router = useRouter();
+  const backgroundImage = useMediaByExactTitle(image);
+  const {onClick} = props;
+
+  const handleClick = () => {
+    if (onClick) {
+      router.push(onClick);
+    }
+  };
+
   return (
-    <Link
-      href={href}
+    <div
       className={cn(
-        "group relative block h-full w-[300px] overflow-hidden rounded-2xl bg-gradient-to-br from-white/95 via-white/90 to-white/85 border border-gray-200 transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-transparent"
+        "group relative block h-full w-[300px] overflow-hidden rounded-2xl bg-gradient-to-br from-white/95 via-white/90 to-white/85 border border-gray-200 transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-transparent", onClick && "cursor-pointer"
       )}
+      onClick={handleClick}
     >
       <div className="relative h-[200px] w-[300px] overflow-hidden bg-gray-100">
         {image && (
           <>
             <img
-              src={image}
+              src={backgroundImage?.data}
               alt={title}
               className="h-full w-full object-cover transition-all duration-700 ease-out group-hover:scale-105"
             />
@@ -75,6 +88,6 @@ export function CardWithImage({
       {/* Subtle gradient overlays */}
       <div className="absolute inset-0 bg-gradient-to-br from-background/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-background/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-    </Link>
+    </div>
   );
 }

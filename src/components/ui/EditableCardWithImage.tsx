@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { cn } from "@/lib/utils";
 import { ImageUploaderAndPicker } from "./image-picker";
+import { useMediaByExactTitle } from "./use-media";
+import { LinkSelector } from "./link-selector";
+import { Button } from "./button";
+import { LinkPage } from "./link-page";
 
 interface EditableCardWithImageProps {
   title?: string;
@@ -16,14 +20,23 @@ export default function EditableCardWithImage({
   image,
   className,
   onChange,
+  ...props
 }: EditableCardWithImageProps) {
   const handleContentEdit = (field: "title" | "description", value: string) => {
     onChange({ [field]: value });
   };
 
+  const [addLink, setAddLink] = useState<boolean>(false);
+
   const handleImageChange = (newImage: string) => {
     onChange({ image: newImage });
   };
+
+  
+  
+
+  const backgroundImage = useMediaByExactTitle(image);
+
 
   return (
     <div
@@ -31,16 +44,22 @@ export default function EditableCardWithImage({
         "group relative flex flex-col overflow-hidden rounded-lg bg-white shadow-lg",
         className
       )}
-    >
+    > 
+
+    <LinkPage onClick={props.onClick} addLink={addLink} setAddLink={setAddLink} onChange={onChange} />
+    
       <div className="relative h-48 w-full overflow-hidden group">
-        <img
-          src={image}
-          alt={title}
-          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-        />
-        <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
           <ImageUploaderAndPicker onChange={handleImageChange} />
-        </div>
+          {image && (
+          <>
+            <img
+              src={backgroundImage?.data}
+              alt={title}
+              className="h-full w-full object-cover transition-all duration-700 ease-out group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          </>
+        )}
       </div>
       <div className="flex flex-1 flex-col justify-between p-6">
         <div className="flex-1">
@@ -72,3 +91,5 @@ export default function EditableCardWithImage({
     </div>
   );
 }
+
+

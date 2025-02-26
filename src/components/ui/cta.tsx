@@ -2,16 +2,12 @@
 import React from "react";
 import { Button } from "./custom";
 import { Icon } from "@iconify/react/dist/iconify.js";
-// import { Link } from "react-router-dom";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import Title from "./Title";
 import Container from "./container";
-import Glass from "@/lib/helpers";
-import TitleWithBottomBorder from "./title-with-bottom-border";
 import Link from "next/link";
 import MediaItem from "./media-item";
-import parse from "html-react-parser";
 import { useMediaByExactTitle } from "./use-media";
 
 export default function CTA() {
@@ -21,14 +17,6 @@ export default function CTA() {
         effect="none"
         className="flex flex-col mx-auto  md:flex-row relative"
       >
-        {/* <Title
-          title={
-            <p className="text-5xl text-black/50 w-full text-left">ancl;</p>
-          }
-          to={""}
-          subtitle={"WHAT ARE YOU LOOKING FOR?"}
-          cta={"All Solutions"}
-        /> */}
         <div className="flex gap-4 min-h-screen  mx-auto">
           <div className="flex-1 items-center justify-center grid grid-cols-1 md:grid-cols-2 gap-10  relative ">
             {CtaDetails.map((item, index) => (
@@ -227,12 +215,14 @@ export const CTADefault = ({
   image,
   description,
   descriptionClassName,
+  ...props
 }: {
   title?: string;
   subtitle?: string | React.ReactNode;
   image?: string;
   description?: string | React.ReactNode;
   descriptionClassName?: string;
+  onClick?: string;
 }) => {
   const navigate = useRouter();
   const imageUrl = useMediaByExactTitle(image);
@@ -247,7 +237,7 @@ export const CTADefault = ({
         <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/35 to-black/50"></div>
 
         {/* Content Container with reduced height */}
-        <div className="relative px-6 md:px-12 py-16 md:py-20">
+        <div className="relative z-[10] px-6 md:px-12 py-16 md:py-20">
           <div className="flex flex-col items-center text-center max-w-3xl mx-auto gap-6">
             {/* Title Container */}
             <div className="space-y-4">
@@ -279,7 +269,7 @@ export const CTADefault = ({
 
             {/* Refined CTA Button */}
             <Button
-              onClick={() => navigate.push("/lien-he")}
+              onClick={() => navigate.push(props.onClick || "/lien-he")}
               className="mt-4 px-7 py-4 bg-background/95 hover:bg-background text-white rounded-full transition-all duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-xl backdrop-blur-sm"
             >
               <div className="flex items-center gap-3 text-sm">
@@ -313,7 +303,7 @@ export const CTAWithImage = ({
   image,
   flip,
   desClassName,
-  link = "/",
+  ...props
 }: {
   subtitle?: string | React.ReactNode;
   title: string | React.ReactNode;
@@ -371,11 +361,10 @@ export const CTAWithImage = ({
           </div>
 
         {/* CTA Button */}
-        {link !== "/" && ctaAction && (
           <div className="relative group/btn">
             <div className="absolute -inset-0.5 bg-gradient-to-r from-background to-background/80 rounded-full blur opacity-0 group-hover/btn:opacity-100 transition duration-500"></div>
             <button
-              onClick={() => navigate.push(link)}
+              onClick={() => navigate.push(props.onClick || "/lien-he")}
               className="relative flex items-center gap-3 px-8 py-4 bg-background hover:bg-background/90 text-white rounded-full transition-all duration-300 hover:scale-[1.02] text-sm font-medium"
             >
               <span className="transition-all duration-300 group-hover/btn:pr-2">
@@ -387,7 +376,6 @@ export const CTAWithImage = ({
               />
             </button>
           </div>
-        )}
 
         {/* Decorative Elements */}
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-background/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>

@@ -1,11 +1,10 @@
-import { Icon } from "@iconify/react/dist/iconify.js";
 
 export const AnimatedBackground = () => {
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden">
+    <div className="fixed inset-0 pointer-events-none overflow-hidden bg-white">
       {/* Base Gradient */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] 
-                    from-blue-50/30 via-white via-purple-50/20 to-white" />
+                    from-orange-50/30 via-white via-orange-50/20 to-white" />
 
       {/* Static Mesh Grid */}
       <div className="absolute inset-0 opacity-[0.15]"
@@ -49,22 +48,22 @@ export const AnimatedBackground = () => {
 
           {/* Static Gradients - More visible and spread out */}
           <div className="absolute top-[5%] left-[5%] w-[400px] h-[400px]
-                        bg-gradient-to-br from-blue-500/[0.08] to-transparent rounded-full blur-2xl" />
+                        bg-gradient-to-br from-orange-500/[0.08] to-transparent rounded-full blur-2xl" />
           
           <div className="absolute top-[20%] right-[5%] w-[350px] h-[350px]
-                        bg-gradient-to-tr from-purple-500/[0.08] to-transparent rounded-full blur-2xl" />
+                        bg-gradient-to-tr from-orange-500/[0.08] to-transparent rounded-full blur-2xl" />
           
           <div className="absolute bottom-[5%] right-[10%] w-[380px] h-[380px]
-                        bg-gradient-to-bl from-blue-500/[0.08] via-purple-500/[0.05] to-transparent rounded-full blur-2xl" />
+                        bg-gradient-to-bl from-orange-500/[0.08] via-orange-500/[0.05] to-transparent rounded-full blur-2xl" />
           
           <div className="absolute bottom-[15%] left-[10%] w-[320px] h-[320px]
-                        bg-gradient-to-tr from-purple-500/[0.08] to-transparent rounded-full blur-2xl" />
+                        bg-gradient-to-tr from-orange-500/[0.08] to-transparent rounded-full blur-2xl" />
         </div>
 
         {/* Light Elements */}
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-[10%] w-2 h-[30%] bg-gradient-to-b from-blue-500/[0.1] to-transparent" />
-          <div className="absolute top-[10%] right-[20%] w-2 h-[25%] bg-gradient-to-b from-purple-500/[0.1] to-transparent" />
+          <div className="absolute top-0 left-[10%] w-2 h-[30%] bg-gradient-to-b from-orange-500/[0.1] to-transparent" />
+          <div className="absolute top-[10%] right-[20%] w-2 h-[25%] bg-gradient-to-b from-orange-500/[0.1] to-transparent" />
 
           {/* Static Dots - More visible and spread out */}
           {[...Array(8)].map((_, i) => (

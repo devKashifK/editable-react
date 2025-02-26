@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Icon } from "@iconify/react";
 import db from "@/components/db/db";
 
-export default function ExamplePage() {
+export default function Admin() {
   const params = useParams();
   const slug = params?.slug as string;
 
@@ -25,7 +25,6 @@ export default function ExamplePage() {
   // 3. Parse the fetched data into config
   useEffect(() => {
     if (data?.data?.json) {
-      console.log("Received data:", data.data.json);
       try {
         const parsedConfig =
           typeof data.data.json === "string"
@@ -35,7 +34,6 @@ export default function ExamplePage() {
         const configArray = Array.isArray(parsedConfig)
           ? parsedConfig
           : [parsedConfig];
-        console.log("Parsed config:", configArray);
         setConfig(configArray);
       } catch (e) {
         console.error("Error parsing config:", e);
@@ -44,15 +42,12 @@ export default function ExamplePage() {
   }, [data]);
 
   // Debug log for config changes
-  useEffect(() => {
-    console.log("Current config state:", config);
-  }, [config]);
+
 
   // 4. Save updated config to Supabase
   async function handleSave() {
     if (!config) return;
 
-    console.log("Saving config:", config);
 
     // If your column is text, store as string:
     const updatedConfigString = JSON.stringify(config);
@@ -71,7 +66,6 @@ export default function ExamplePage() {
     if (updateError) {
       console.error("Error saving page config:", updateError);
     } else {
-      console.log("Page config saved successfully:", updateData);
       setIsEditing(false);
     }
   }

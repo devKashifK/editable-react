@@ -12,6 +12,8 @@ export default function Dashboard() {
     },
   });
 
+
+
   // Group pages by category
   const pagesByCategory =
     pageConfig?.data?.reduce((acc, page) => {

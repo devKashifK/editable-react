@@ -2,6 +2,7 @@
 import { cn } from "@/lib/utils";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const PRESET_COLORS = [
@@ -26,6 +27,7 @@ export default function HoverCard({
   className,
   link = "#",
   iconColor,
+  ...props
 }: {
   icon?: string | React.ReactNode;
   title?: string | React.ReactNode;
@@ -35,15 +37,24 @@ export default function HoverCard({
   className?: string;
   link?: string;
   iconColor?: string;
+  onClick?: string;
 }) {
   const [isHovered, setIsHovered] = useState(false);
+  const router = useRouter();
   const [randomColor] = useState(() => 
     color || PRESET_COLORS[Math.floor(Math.random() * PRESET_COLORS.length)]
   );
+
+  const {onClick} = props;
+
+  const handleClick = () => {
+    if (onClick) {
+      router.push(onClick);
+    }
+  };
   
   return (
-    <Link
-      href={link}
+    <div
       className={cn(
         "group relative overflow-hidden border",
         "rounded-[2rem] p-8 md:p-10",
@@ -55,10 +66,13 @@ export default function HoverCard({
         "hover:scale-[1.02] hover:-translate-y-1",
         "hover:shadow-[0_20px_80px_-15px_rgba(0,0,0,0.3)]",
         "dark:hover:shadow-[0_20px_80px_-15px_rgba(0,0,0,0.6)]",
+        onClick && "cursor-pointer",
         className
       )}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={handleClick}
+
     >
       {/* Ambient Light Effect */}
       <div 
@@ -175,7 +189,7 @@ export default function HoverCard({
           isHovered ? "opacity-100" : "opacity-0"
         )}
       />
-    </Link>
+    </div>
   );
 }
 

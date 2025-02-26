@@ -30,7 +30,6 @@ export default function Hero({
 }: HeroProps) {
   const navigate = useRouter();
   const backgroundImageUrl = useMediaByExactTitle(backgroundImage);
-  console.log(backgroundImageUrl?.data, backgroundImage, "backgroundImageUrl");
 
   return (
     <div className="relative min-h-screen w-full">

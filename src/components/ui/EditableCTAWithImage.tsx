@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { cn } from "@/lib/utils";
 import parse from "html-react-parser";
 import Container from "./container";
 import { ImageUploaderAndPicker } from "./image-picker";
 import EditableDescription from "./EditableDescription";
+import { LinkPage } from "./link-page";
 
 interface EditableCTAWithImageProps {
   title?: string;
@@ -13,6 +14,7 @@ interface EditableCTAWithImageProps {
   flip?: boolean | string;
   className?: string;
   onChange: (newProps: Partial<EditableCTAWithImageProps>) => void;
+  onClick?: string;
 }
 
 export default function EditableCTAWithImage({
@@ -23,6 +25,7 @@ export default function EditableCTAWithImage({
   flip,
   className,
   onChange,
+  ...props
 }: EditableCTAWithImageProps) {
   const handleContentEdit = (
     field: "title" | "subtitle" | "description",
@@ -30,6 +33,7 @@ export default function EditableCTAWithImage({
   ) => {
     onChange({ [field]: value });
   };
+  const [addLink, setAddLink] = useState<boolean>(false);
 
   const handleImageChange = (newImage: string) => {
     onChange({ image: newImage });
@@ -43,6 +47,7 @@ export default function EditableCTAWithImage({
         className
       )}
     >
+      <LinkPage onClick={props.onClick} addLink={addLink} setAddLink={setAddLink} onChange={onChange} />
       <div className="flex-1 relative group">
         <img
           src={image}

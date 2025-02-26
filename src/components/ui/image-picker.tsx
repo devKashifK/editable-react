@@ -17,6 +17,7 @@ import { Loader2, Upload, Image as ImageIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { toast } from "../hooks/use-toast";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
 const supabaseService = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -26,20 +27,19 @@ const supabaseService = createClient(
 async function uploadImage(file: File) {
   const { data, error } = await supabaseService.storage
     .from("images")
-    .upload(`public/${file.name}`, file);
+    .upload(`${file.name}`, file);
 
   if (error) {
     throw new Error(error.message);
   }
-  return supabaseService.storage
+  return await supabaseService.storage
     .from("images")
-    .getPublicUrl(`public/${file.name}`).data.publicUrl;
+    .getPublicUrl(`${file.name}`).data.publicUrl;
 }
 
 async function fetchImages() {
   const { data, error } = await supabaseService.storage.from("images").list();
 
-  console.log(data);
 
   if (error) {
     throw new Error(error.message);
@@ -59,62 +59,73 @@ export function ImageUploaderAndPicker({
 }: {
   onChange: (image: string) => void;
 }) {
-  const [images, setImages] = useState<{ name: string; url: string }[]>([]);
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [uploading, setUploading] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState("uploaded");
+  const [selectedImage, setSelectedImage] = useState<any>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState("uploaded");
+  const queryClient = useQueryClient();
 
-  useEffect(() => {
-    const loadImages = async () => {
-      try {
-        const imageData = await fetchImages();
-        console.log(imageData, "checkImageData23");
-        setImages(imageData);
-      } catch (error) {
-        toast({
-          title: "Error",
-          description: "Failed to load images. Please try again.",
-          variant: "destructive",
-        });
-      } finally {
-        setLoading(false);
-      }
-    };
-    loadImages();
-  }, []);
+  // Query for fetching images
+  const { data: images = [], isLoading } = useQuery({
+    queryKey: ['images'],
+    queryFn: fetchImages,
+  });
 
-  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    setUploading(true);
-    try {
-      const imageUrl = await uploadImage(file);
-      setImages((prevImages) => [
-        ...prevImages,
+  // Mutation for uploading images
+  const uploadMutation = useMutation({
+    mutationFn: uploadImage,
+    onSuccess: (imageUrl, file) => {
+      queryClient.setQueryData(['images'], (old: any) => [
         { name: file.name, url: imageUrl },
+        ...old,
       ]);
-      setSelectedImage(imageUrl);
+      setSelectedImage({ name: file.name, url: imageUrl });
       setActiveTab("uploaded");
       toast({
         title: "Success",
         description: "Image uploaded successfully.",
       });
-    } catch (error) {
+    },
+    onError: (error) => {
       toast({
         title: "Error",
         description: "Failed to upload image. Please try again.",
         variant: "destructive",
       });
-    } finally {
-      setUploading(false);
-    }
+    },
+  });
+
+  // Mutation for deleting images
+  const deleteMutation = useMutation({
+    mutationFn: deleteImage,
+    onSuccess: (_, deletedImageName) => {
+      queryClient.setQueryData(['images'], (old: any) => 
+        old.filter((image: any) => image.name !== deletedImageName)
+      );
+      if (selectedImage?.name === deletedImageName) {
+        setSelectedImage(null);
+      }
+      toast({
+        title: "Success",
+        description: "Image deleted successfully.",
+      });
+    },
+    onError: (error) => {
+      toast({
+        title: "Error",
+        description: "Failed to delete image. Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    uploadMutation.mutate(file);
   };
 
   const handleImageSelect = (image: { name: string; url: string }) => {
-    setSelectedImage(image.url);
+    setSelectedImage(image);
     onChange(`"${image.name}"`);
     setDialogOpen(false);
   };
@@ -122,7 +133,7 @@ export function ImageUploaderAndPicker({
   async function deleteImage(imageName) {
     const { error } = await supabaseService.storage
       .from("images") // Replace "images" with your actual bucket name if different
-      .remove([`public/${imageName}`]); // Use the correct folder path if you have one
+      .remove([`${imageName}`]); // Use the correct folder path if you have one
 
     if (error) {
       throw new Error(error.message);
@@ -130,12 +141,12 @@ export function ImageUploaderAndPicker({
   }
 
   return (
-    <div className="space-y-6 w-full">
+    <div className="space-y-6 w-full relative z-10">
       <div className="flex w-full items-center space-x-4">
         <Input
           type="text"
           placeholder="No image selected"
-          value={selectedImage ? selectedImage.split("/").pop() : ""}
+          value={selectedImage ? selectedImage.name : ""}
           readOnly
           className="flex-grow"
         />
@@ -155,7 +166,7 @@ export function ImageUploaderAndPicker({
                 <TabsTrigger value="upload">Upload from Computer</TabsTrigger>
               </TabsList>
               <TabsContent value="uploaded">
-                {loading ? (
+                {isLoading ? (
                   <div className="flex justify-center items-center h-64">
                     <Loader2 className="h-8 w-8 animate-spin" />
                   </div>
@@ -165,7 +176,7 @@ export function ImageUploaderAndPicker({
                       <Card
                         key={image.name}
                         className={`cursor-pointer hover:shadow-md transition-shadow`}
-                        onClick={() => setSelectedImage(image.url)}
+                        onClick={() => setSelectedImage(image)}
                       >
                         <CardContent className="p-0 relative">
                           <img
@@ -173,12 +184,12 @@ export function ImageUploaderAndPicker({
                             alt={image.name}
                             className={cn(
                               "w-full h-32 object-cover rounded-md",
-                              selectedImage === image.url
+                              selectedImage?.url === image.url
                                 ? "border-2 border-highlight transition-all duration-300 ease-in-out"
                                 : ""
                             )}
                           />
-                          {selectedImage === image.url && (
+                          {selectedImage?.url === image.url && (
                             <div className="absolute top-0 right-0 bg-black/50 w-full h-full flex items-center justify-center gap-3">
                               <div
                                 className="p-1 rounded-full hover:bg-highlight transition-colors duration-300 ease-in-out"
@@ -191,9 +202,7 @@ export function ImageUploaderAndPicker({
                               </div>
                               <div
                                 className="p-1 rounded-full hover:bg-highlight transition-colors duration-300 ease-in-out"
-                                onClick={async () =>
-                                  await deleteImage(image.name)
-                                }
+                                onClick={() => deleteMutation.mutate(image.name)}
                               >
                                 <Icon
                                   icon={"material-symbols:delete"}
@@ -230,7 +239,8 @@ export function ImageUploaderAndPicker({
               <Button
                 className="bg-highlight"
                 onClick={() => {
-                  handleImageSelect(images[0]);
+                  onChange(`"${selectedImage.name}"`);
+                  setDialogOpen(false);
                 }}
               >
                 Add Image

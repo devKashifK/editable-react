@@ -30,10 +30,10 @@ export const Button = ({
       {...props}
       // onClick={handleClick}
     >
-      <span className="group-hover/modal-btn:translate-x-40 text-center transition duration-500">
+      <span className="group-hover text-center transition duration-500">
         {children}
       </span>
-      <div className="-translate-x-40 group-hover/modal-btn:translate-x-0 flex items-center justify-center absolute inset-0 transition duration-500 text-white z-20">
+      <div className="group-hover/modal-btn:translate-x-0 flex items-center justify-center absolute inset-0 transition duration-500 text-white z-20">
         {typeof icon === "string" ? <span className={icon} /> : icon}
       </div>
     </button>

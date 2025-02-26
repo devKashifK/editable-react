@@ -1,15 +1,17 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { EditableIcon } from "./editable-icon";
 import EditableDescription from "./EditableDescription";
+import { LinkPage } from "./link-page";
 
 interface EditableServicesCardProps {
   title?: string;
   description?: string;
   icon?: string;
   onUpdate: (data: { title: string; description: string; icon: string }) => void;
+  onClick?: string;
 }
 
 export const EditableServicesCard = ({
@@ -17,8 +19,10 @@ export const EditableServicesCard = ({
   description = "",
   icon = "",
   onUpdate,
+  ...props
 }: EditableServicesCardProps) => {
   const titleRef = useRef<HTMLHeadingElement>(null);
+  const [addLink, setAddLink] = useState(false);
 
   const handleEdit = (field: string, value: string) => {
     onUpdate({
@@ -43,6 +47,7 @@ export const EditableServicesCard = ({
 
   return (
     <div className="group relative">
+      <LinkPage onClick={props.onClick} addLink={addLink} setAddLink={setAddLink} onChange={onUpdate} />
       <div className="relative h-full overflow-hidden rounded-3xl bg-gradient-to-b from-white/90 via-white/80 to-white/40 p-8
                     backdrop-blur-xl backdrop-saturate-150
                     border border-white/20

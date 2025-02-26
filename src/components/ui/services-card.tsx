@@ -1,25 +1,38 @@
 import { cn } from "@/lib/utils";
 import { Icon } from "@iconify/react";
+import { useRouter } from "next/navigation";
 
 export const ServicesCard = ({
   title,
   description,
   icon,
+  ...props
 }: {
   title?: string | React.ReactNode;
   description?: string;
   icon?: string;
+  onClick?: string;
 }) => {
+  const {onClick} = props;
+  const router = useRouter();
+
+  const handleClick = () => {
+    if (onClick) {
+      router.push(onClick);
+    }
+  };
 
   return (
-    <div className="group relative">
+    <div className={cn("group relative", onClick && "cursor-pointer")}>
       <div className="relative h-full overflow-hidden rounded-3xl bg-gradient-to-b from-white/90 via-white/80 to-white/40 p-8
                     backdrop-blur-xl backdrop-saturate-150
                     border border-white/20
                     transition-all duration-300 ease-out
                     hover:shadow-[0_8px_40px_-12px_rgba(0,0,0,0.1)]
                     dark:from-gray-900/90 dark:via-gray-900/80 dark:to-gray-900/40
-                    dark:border-white/[0.08]">
+                    dark:border-white/[0.08]"
+                    onClick={handleClick}
+                    >
         
         {/* Background Glow Effect */}
         <div className="absolute inset-0 bg-gradient-to-br from-background/0 via-background/[0.07] to-background/0 

@@ -19,11 +19,7 @@ import { Icon } from "@iconify/react";
 import { List, UL } from "@/components/ui/list";
 import EditableHoverCard from "@/components/ui/EditableHoverCard";
 import { cn } from "@/lib/utils";
-
-// If Glass is a real component, import it. Otherwise, a placeholder:
 import Glass from "@/lib/helpers";
-
-// If OfficeCard & ContactForm are real, import them from their actual location:
 import HoverCard from "./ui/hover-card";
 import TitleWithDoubleBorder from "./ui/title-with-double-border";
 import TitleWithBottomBorder from "./ui/title-with-bottom-border";
@@ -233,7 +229,6 @@ export function InPlacePageRenderer({
   dataSources = {},
 }: InPlacePageRendererProps) {
   // Debug logging
-  console.log("InPlacePageRenderer received nodes:", nodes);
 
   /**
    * Called when an editable component updates its props.
@@ -244,6 +239,7 @@ export function InPlacePageRenderer({
     newProps: Partial<NodeProps> & { children?: any[] }
   ) => {
     if (!onChange) return;
+
 
     const cloned = Array.isArray(nodes)
       ? structuredClone(nodes)
@@ -277,6 +273,7 @@ export function InPlacePageRenderer({
 
     updateAtPath(cloned, path);
 
+
     if (Array.isArray(nodes)) {
       onChange(cloned);
     } else {
@@ -288,11 +285,7 @@ export function InPlacePageRenderer({
    * Recursively renders a single node, given a path array (e.g. [0,1,2]).
    */
   const renderNode = (node: Node, path: number[]): React.ReactNode => {
-    console.log("Rendering node:", {
-      type: node.type,
-      props: node.props,
-      path,
-    });
+   
 
     if (!node) return null;
     if (typeof node === "string") return node;
@@ -315,7 +308,6 @@ export function InPlacePageRenderer({
     // If "map" node, iterate dataSources[node.source]
     if (node.type === "map" && node.source && node.template) {
       const data = dataSources[node.source] || [];
-      console.log(`Mapping over ${node.source}:`, data);
 
       return (
         <div
@@ -429,6 +421,7 @@ export function InPlacePageRenderer({
               desClassName={node.props.desClassName}
               ctaAction={renderTextContent(node.props.ctaAction)}
               onChange={(newProps) => handleNodeChange(path, newProps)}
+              {...node.props}
             />
           );
         }
@@ -443,6 +436,7 @@ export function InPlacePageRenderer({
             link={node.props.link}
             desClassName={node.props.desClassName}
             ctaAction={renderTextContent(node.props.ctaAction)}
+            {...node.props}
           />
         );
 
@@ -482,6 +476,7 @@ export function InPlacePageRenderer({
               image={node.props.image || ""}
               href={node.props.href}
               onChange={(newProps) => handleNodeChange(path, newProps)}
+              {...node.props}
             />
           );
         }
@@ -492,6 +487,7 @@ export function InPlacePageRenderer({
             description={node.props.description || ""}
             image={node.props.image || ""}
             href={node.props.href}
+            {...node.props}
           />
         );
 
@@ -527,6 +523,7 @@ export function InPlacePageRenderer({
               cta={renderTextContent(node.props.cta) || ""}
               icon={renderTextContent(node.props.icon) || ""}
               onChange={(newProps) => handleNodeChange(path, newProps)}
+              {...node.props}
             />
           );
         }
@@ -538,6 +535,7 @@ export function InPlacePageRenderer({
             cta={renderTextContent(node.props.cta) || ""}
             icon={renderTextContent(node.props.icon) || ""}
             color={renderTextContent(node.props.color) || ""}
+            {...node.props}
           />
         );
 
@@ -1068,10 +1066,8 @@ export function InPlacePageRenderer({
 
   // If "nodes" is an array, map over it. If it's a single node, just render that node.
   if (Array.isArray(nodes)) {
-    console.log("Rendering array of nodes:", nodes.length);
     return <>{nodes.map((node, i) => renderNode(node, [i]))}</>;
   } else {
-    console.log("Rendering single node");
     return <>{renderNode(nodes, [0])}</>;
   }
 }

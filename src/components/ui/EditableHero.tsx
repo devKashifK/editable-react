@@ -65,15 +65,13 @@ export default function EditableHero({
   };
 
   return (
-    <div className="relative min-h-screen w-full">
+    <div className="relative min-h-screen w-full bg-black">
       {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute right-0 top-[100px] z-[10000000000]">
         {editable ? (
-          <div className="absolute inset-0 flex items-center justify-center bg-black/50">
             <ImageUploaderAndPicker
               onChange={(newImage) => handleChange("backgroundImage", newImage)}
             />
-          </div>
         ) : (
           <div
             style={{
