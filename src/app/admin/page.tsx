@@ -28,13 +28,22 @@ export default function Dashboard() {
   return (
     <div className="max-w-7xl mx-auto">
       {/* Header Section */}
-      <div className="mb-12">
-        <h1 className="text-4xl font-bold text-gray-800 tracking-tight mb-2">
-          Content Management
-        </h1>
-        <p className="text-gray-600">
-          Manage and organize your website content
-        </p>
+      <div className="mb-12 flex justify-between items-center">
+        <div>
+          <h1 className="text-4xl font-bold text-gray-800 tracking-tight mb-2">
+            Content Management
+          </h1>
+          <p className="text-gray-600">
+            Manage and organize your website content
+          </p>
+        </div>
+        <Link
+          href="/admin/template/new"
+          className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
+        >
+          <Icon icon="mdi:plus" />
+          Create New Template
+        </Link>
       </div>
 
       {/* Content Section */}
