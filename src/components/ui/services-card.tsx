@@ -1,3 +1,4 @@
+"use client";
 import { cn } from "@/lib/utils";
 import { Icon } from "@iconify/react";
 import { useRouter } from "next/navigation";
