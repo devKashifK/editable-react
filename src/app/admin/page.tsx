@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Icon } from "@iconify/react";
 import db from "@/components/db/db";
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 
 export default function Dashboard() {
   const { data: pageConfig } = useQuery({
@@ -12,11 +13,20 @@ export default function Dashboard() {
     },
   });
 
+  // Add search state
+  const [searchTerm, setSearchTerm] = useState("");
 
-
-  // Group pages by category
+  // Group pages by category and filter based on search
   const pagesByCategory =
     pageConfig?.data?.reduce((acc, page) => {
+      // Check if page matches search term
+      if (
+        searchTerm &&
+        !page.name.toLowerCase().includes(searchTerm.toLowerCase())
+      ) {
+        return acc;
+      }
+
       const category = page.category || "uncategorized";
       if (!acc[category]) {
         acc[category] = [];
@@ -44,6 +54,23 @@ export default function Dashboard() {
           <Icon icon="mdi:plus" />
           Create New Template
         </Link> */}
+      </div>
+
+      {/* Search Section */}
+      <div className="mb-8">
+        <div className="relative">
+          <input
+            type="text"
+            placeholder="Search pages..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full px-4 py-2 pl-10 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+          <Icon
+            icon="mdi:magnify"
+            className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5"
+          />
+        </div>
       </div>
 
       {/* Content Section */}

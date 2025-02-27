@@ -62,6 +62,7 @@ export function ImageUploaderAndPicker({
   const [selectedImage, setSelectedImage] = useState<any>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("uploaded");
+  const [searchTerm, setSearchTerm] = useState("");
   const queryClient = useQueryClient();
 
   // Query for fetching images
@@ -118,6 +119,11 @@ export function ImageUploaderAndPicker({
     },
   });
 
+  // Filter images based on search term
+  const filteredImages = images.filter((image) =>
+    image.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -171,50 +177,65 @@ export function ImageUploaderAndPicker({
                     <Loader2 className="h-8 w-8 animate-spin" />
                   </div>
                 ) : (
-                  <div className="grid grid-cols-3 gap-4 max-h-[350px] pretty-scroll overflow-y-auto">
-                    {images.map((image) => (
-                      <Card
-                        key={image.name}
-                        className={`cursor-pointer hover:shadow-md transition-shadow`}
-                        onClick={() => setSelectedImage(image)}
-                      >
-                        <CardContent className="p-0 relative">
-                          <img
-                            src={image.url}
-                            alt={image.name}
-                            className={cn(
-                              "w-full h-32 object-cover rounded-md",
-                              selectedImage?.url === image.url
-                                ? "border-2 border-highlight transition-all duration-300 ease-in-out"
-                                : ""
+                  <>
+                    <div className="mb-4 relative">
+                      <Input
+                        type="text"
+                        placeholder="Search images..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="pl-8"
+                      />
+                      <Icon
+                        icon="mdi:magnify"
+                        className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5"
+                      />
+                    </div>
+                    <div className="grid grid-cols-3 gap-4 max-h-[350px] pretty-scroll overflow-y-auto">
+                      {filteredImages.map((image) => (
+                        <Card
+                          key={image.name}
+                          className={`cursor-pointer hover:shadow-md transition-shadow`}
+                          onClick={() => setSelectedImage(image)}
+                        >
+                          <CardContent className="p-0 relative">
+                            <img
+                              src={image.url}
+                              alt={image.name}
+                              className={cn(
+                                "w-full h-32 object-cover rounded-md",
+                                selectedImage?.url === image.url
+                                  ? "border-2 border-highlight transition-all duration-300 ease-in-out"
+                                  : ""
+                              )}
+                            />
+                            {selectedImage?.url === image.url && (
+                              <div className="absolute top-0 right-0 bg-black/50 w-full h-full flex items-center justify-center gap-3">
+                                <div
+                                  className="p-1 rounded-full hover:bg-highlight transition-colors duration-300 ease-in-out"
+                                  onClick={() => handleImageSelect(image)}
+                                >
+                                  <Icon
+                                    icon={"material-symbols:add-2"}
+                                    className="text-content text-2xl"
+                                  />
+                                </div>
+                                <div
+                                  className="p-1 rounded-full hover:bg-highlight transition-colors duration-300 ease-in-out"
+                                  onClick={() => deleteMutation.mutate(image.name)}
+                                >
+                                  <Icon
+                                    icon={"material-symbols:delete"}
+                                    className="text-content text-2xl"
+                                  />
+                                </div>
+                              </div>
                             )}
-                          />
-                          {selectedImage?.url === image.url && (
-                            <div className="absolute top-0 right-0 bg-black/50 w-full h-full flex items-center justify-center gap-3">
-                              <div
-                                className="p-1 rounded-full hover:bg-highlight transition-colors duration-300 ease-in-out"
-                                onClick={() => handleImageSelect(image)}
-                              >
-                                <Icon
-                                  icon={"material-symbols:add-2"}
-                                  className="text-content text-2xl"
-                                />
-                              </div>
-                              <div
-                                className="p-1 rounded-full hover:bg-highlight transition-colors duration-300 ease-in-out"
-                                onClick={() => deleteMutation.mutate(image.name)}
-                              >
-                                <Icon
-                                  icon={"material-symbols:delete"}
-                                  className="text-content text-2xl"
-                                />
-                              </div>
-                            </div>
-                          )}
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </div>
+                          </CardContent>
+                        </Card>
+                      ))}
+                    </div>
+                  </>
                 )}
               </TabsContent>
               <TabsContent value="upload">
