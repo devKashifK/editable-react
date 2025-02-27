@@ -37,13 +37,13 @@ export default function Dashboard() {
             Manage and organize your website content
           </p>
         </div>
-        <Link
+        {/* <Link
           href="/admin/template/new"
           className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
         >
           <Icon icon="mdi:plus" />
           Create New Template
-        </Link>
+        </Link> */}
       </div>
 
       {/* Content Section */}

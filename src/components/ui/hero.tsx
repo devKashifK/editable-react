@@ -51,7 +51,7 @@ export default function Hero({
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 md:px-6 lg:px-8 min-h-screen flex items-center">
+      <div className="relative z-10 container mx-auto px-4 md:px-6 lg:px-8 min-h-screen flex items-center pt-10">
         <div className="max-w-3xl pt-20">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
             {title}

@@ -16,17 +16,18 @@ export function ComponentPalette({ onAddComponent }: ComponentPaletteProps) {
           {AVAILABLE_COMPONENTS.map((component) => (
             <button
               key={component.type}
-              className="w-full p-3 text-left rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-3"
               onClick={() => onAddComponent(component)}
+              className="w-full p-3 text-left rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-3"
             >
               {component.icon && (
                 <Icon icon={component.icon} className="w-5 h-5 text-gray-500" />
               )}
               <span className="text-sm">{component.label}</span>
+              <span className="ml-auto text-xs text-blue-500">Add</span>
             </button>
           ))}
         </div>
       </ScrollArea>
     </Card>
   );
-} 
+}

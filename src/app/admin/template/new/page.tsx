@@ -1,20 +1,5 @@
 "use client";
 import { useState } from "react";
-import {
-  DndContext,
-  closestCenter,
-  KeyboardSensor,
-  PointerSensor,
-  useSensor,
-  useSensors,
-  DragEndEvent,
-} from "@dnd-kit/core";
-import {
-  arrayMove,
-  SortableContext,
-  sortableKeyboardCoordinates,
-  verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
 import { ComponentPalette } from "@/components/template-builder/ComponentPalette";
 import { TemplatePreview } from "@/components/template-builder/TemplatePreview";
 import { Button } from "@/components/ui/button";
@@ -27,25 +12,6 @@ export default function NewTemplate() {
   const [components, setComponents] = useState<any[]>([]);
   const [templateName, setTemplateName] = useState("");
   const [saving, setSaving] = useState(false);
-
-  const sensors = useSensors(
-    useSensor(PointerSensor),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
-    })
-  );
-
-  const handleDragEnd = (event: DragEndEvent) => {
-    const { active, over } = event;
-
-    if (over && active.id !== over.id) {
-      setComponents((items) => {
-        const oldIndex = items.findIndex((item) => item.id === active.id);
-        const newIndex = items.findIndex((item) => item.id === over.id);
-        return arrayMove(items, oldIndex, newIndex);
-      });
-    }
-  };
 
   const handleAddComponent = (component: any) => {
     setComponents([...components, { ...component, id: crypto.randomUUID() }]);
@@ -66,7 +32,6 @@ export default function NewTemplate() {
       });
 
       if (error) throw error;
-
       toast.success("Template saved successfully!");
       router.push("/admin");
     } catch (error) {
@@ -84,7 +49,7 @@ export default function NewTemplate() {
         <div className="flex justify-between items-center mb-8">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Create New Template</h1>
-            <p className="text-gray-600">Build your template by dragging components</p>
+            <p className="text-gray-600">Build your template by adding components</p>
           </div>
           <div className="flex items-center gap-4">
             <input
@@ -94,8 +59,8 @@ export default function NewTemplate() {
               value={templateName}
               onChange={(e) => setTemplateName(e.target.value)}
             />
-            <Button 
-              onClick={handleSaveTemplate} 
+            <Button
+              onClick={handleSaveTemplate}
               disabled={saving}
               className="bg-blue-600 hover:bg-blue-700"
             >
@@ -109,31 +74,20 @@ export default function NewTemplate() {
             <ComponentPalette onAddComponent={handleAddComponent} />
           </div>
           <div className="col-span-9">
-            <DndContext
-              sensors={sensors}
-              collisionDetection={closestCenter}
-              onDragEnd={handleDragEnd}
-            >
-              <SortableContext
-                items={components}
-                strategy={verticalListSortingStrategy}
-              >
-                <TemplatePreview 
-                  components={components}
-                  onRemoveComponent={(id) => {
-                    setComponents(components.filter(c => c.id !== id));
-                  }}
-                  onUpdateComponent={(id, props) => {
-                    setComponents(components.map(c => 
-                      c.id === id ? { ...c, props: { ...c.props, ...props } } : c
-                    ));
-                  }}
-                />
-              </SortableContext>
-            </DndContext>
+            <TemplatePreview
+              components={components}
+              onRemoveComponent={(id) => {
+                setComponents(components.filter(c => c.id !== id));
+              }}
+              onUpdateComponent={(id, props) => {
+                setComponents(components.map(c =>
+                  c.id === id ? { ...c, props: { ...c.props, ...props } } : c
+                ));
+              }}
+            />
           </div>
         </div>
       </div>
     </div>
   );
-} 
+}
