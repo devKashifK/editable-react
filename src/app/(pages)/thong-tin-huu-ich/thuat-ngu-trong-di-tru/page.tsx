@@ -1,5 +1,6 @@
 import Container from "@/components/ui/container";
 import { CTADefault } from "@/components/ui/cta";
+import HeroDefault from "@/components/ui/hero-all";
 import Title from "@/components/ui/Title";
 import Glass from "@/lib/helpers";
 import React from "react";
@@ -7,10 +8,15 @@ import React from "react";
 export default function ImmigrationTerms() {
   return (
     <>
+    <HeroDefault
+    title="Thuật ngữ di trú Canada"
+    description="Nhiều người thường quen gọi IRCC là Bộ Di trú, Cục Di trú hay Sở Di trú. Tuy nhiên tên đầy đủ của cơ quan này là Bộ Di Trú, Di Cư và Quốc Tịch Canada, tiếng Anh đầy đủ là Immigration Refugee and Citizenship Canada (IRCC)."
+    backgroundImage={JSON.stringify("Agricultural Work.png")}
+    />
       <Container>
         <Glass className="flex flex-col gap-8">
           <Title
-            title="Thuật ngữ di trú Canada lg:text-left"
+            title="Thuật ngữ di trú Canada"
             className="text-left lg:items-start"
             descriptionClassName="lg:text-left"
             description="Canada là một trong những điểm đến định cư phổ biến và hấp dẫn trên thế giới, thu hút hàng nghìn người muốn tìm kiếm cơ hội mới và chất lượng cuộc sống tốt hơn. Tuy nhiên, trước khi bắt đầu hành trình định cư của mình, việc hiểu rõ về những thuật ngữ quan trọng trong di trú là điều hết sức cần thiết. Sau đây là một số thuật ngữ di trú Canada mà bạn nên biết để có một trải nghiệm định cư suôn sẻ."
@@ -125,16 +131,9 @@ export default function ImmigrationTerms() {
       <CTADefault
         title="Chúng tôi có thể giúp bạn"
         subtitle={
-          <p className="text-lg text-white/90">
-            iCan PR hiểu rằng di trú/ định cư tại Canada là một hành trình nhiều
-            thay đổi và thách thức.
-            <br /> Mục tiêu và nhiệm vụ của chúng tôi trở thành đối tác đáng tin
-            cậy của bạn trong hành trình này. Chúng tôi mong <br />
-            muốn giúp bạn hiện thực hóa ước mơ định cư Canada, sẳn sàng chào đón
-            những cơ hội mới tại đây.
-          </p>
+            "iCan PR hiểu rằng di trú/ định cư tại Canada là một hành trình nhiều thay đổi và thách thức. Mục tiêu và nhiệm vụ của chúng tôi trở thành đối tác đáng tin cậy của bạn trong hành trình này. Chúng tôi mong muốn giúp bạn hiện thực hóa ước mơ định cư Canada, sẳn sàng chào đón những cơ hội mới tại đây."
         }
-        image={"/service.jpg"}
+        image={JSON.stringify("service.jpg")}
       />
     </>
   );

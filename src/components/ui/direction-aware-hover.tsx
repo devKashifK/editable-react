@@ -1,165 +1,146 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useTransform, useMotionValue } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export const DirectionAwareHover = ({
   imageUrl,
   children,
-  childrenClassName,
-  imageClassName,
   className,
+  imageClassName,
+  childrenClassName,
 }: {
   imageUrl: string;
-  children: React.ReactNode | string;
-  childrenClassName?: string;
-  imageClassName?: string;
+  children: React.ReactNode;
   className?: string;
+  imageClassName?: string;
+  childrenClassName?: string;
 }) => {
   const ref = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  
+  // Mouse position values
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
 
-  const [direction, setDirection] = useState<
-    "top" | "bottom" | "left" | "right" | string
-  >("left");
+  // Transform mouse position into rotation values
+  const rotateX = useTransform(mouseY, [-0.5, 0.5], ["17.5deg", "-17.5deg"]);
+  const rotateY = useTransform(mouseX, [-0.5, 0.5], ["-17.5deg", "17.5deg"]);
 
-  const handleMouseEnter = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>
-  ) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return;
 
-    const direction = getDirection(event, ref.current);
-    console.log("direction", direction);
-    switch (direction) {
-      case 0:
-        setDirection("top");
-        break;
-      case 1:
-        setDirection("right");
-        break;
-      case 2:
-        setDirection("bottom");
-        break;
-      case 3:
-        setDirection("left");
-        break;
-      default:
-        setDirection("left");
-        break;
-    }
+    const rect = ref.current.getBoundingClientRect();
+    
+    // Calculate relative mouse position
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    
+    mouseX.set(x);
+    mouseY.set(y);
   };
 
-  const getDirection = (
-    ev: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    obj: HTMLElement
-  ) => {
-    const { width: w, height: h, left, top } = obj.getBoundingClientRect();
-    const x = ev.clientX - left - (w / 2) * (w > h ? h / w : 1);
-    const y = ev.clientY - top - (h / 2) * (h > w ? w / h : 1);
-    const d = Math.round(Math.atan2(y, x) / 1.57079633 + 5) % 4;
-    return d;
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    mouseX.set(0);
+    mouseY.set(0);
   };
 
   return (
     <motion.div
-      onMouseEnter={handleMouseEnter}
       ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        perspective: "1000px",
+      }}
       className={cn(
-        "md:h-96 w-60 h-60 md:w-96 bg-transparent rounded-lg overflow-hidden group/card relative",
+        "relative h-96 w-96 rounded-2xl bg-transparent cursor-pointer",
         className
       )}
     >
-      <AnimatePresence mode="wait">
+      <motion.div
+        style={{
+          rotateX,
+          rotateY,
+        }}
+        animate={{
+          scale: isHovered ? 1.05 : 1,
+        }}
+        transition={{
+          duration: 0.3,
+          ease: "easeOut",
+        }}
+        className="relative h-full w-full"
+      >
+        {/* Glass Background */}
         <motion.div
-          className="relative h-full w-full"
-          initial="initial"
-          whileHover={direction}
-          exit="exit"
+          className="absolute inset-0 h-full w-full rounded-2xl bg-gradient-to-br from-neutral-900/90 to-neutral-900/50 backdrop-blur-sm"
+          style={{
+            opacity: isHovered ? 1 : 0,
+          }}
+          transition={{ duration: 0.3 }}
+        />
+
+        {/* Image */}
+        <motion.div
+          className={cn(
+            "absolute inset-0 h-full w-full rounded-2xl overflow-hidden",
+            imageClassName
+          )}
         >
-          <motion.div className="group-hover/card:block hidden absolute inset-0 w-full h-full bg-black/40 z-10 transition duration-500" />
-          <motion.div
-            variants={variants}
-            className="h-full w-full relative bg-gray-50 dark:bg-black"
+          <motion.img
+            src={imageUrl}
+            alt="Project thumbnail"
+            className="h-full w-full object-cover"
+            animate={{
+              scale: isHovered ? 1.1 : 1,
+            }}
             transition={{
-              duration: 0.2,
+              duration: 0.3,
               ease: "easeOut",
             }}
-          >
-            <img
-              alt="image"
-              className={cn("h-full w-full object-cover", imageClassName)}
-              width="1000"
-              height="1000"
-              src={imageUrl}
-            />
-          </motion.div>
-          <motion.div
-            variants={textVariants}
-            transition={{
-              duration: 0.5,
-              ease: "easeOut",
-            }}
-            className={cn(
-              "text-white absolute bottom-4 left-4 z-40",
-              childrenClassName
-            )}
-          >
-            {children}
-          </motion.div>
+          />
         </motion.div>
-      </AnimatePresence>
+
+        {/* Content */}
+        <motion.div
+          className={cn(
+            "absolute inset-0 p-8 text-white",
+            childrenClassName
+          )}
+          style={{
+            opacity: isHovered ? 1 : 0,
+            scale: isHovered ? 1 : 0.95,
+          }}
+          transition={{
+            duration: 0.3,
+            ease: "easeOut",
+          }}
+        >
+          {children}
+        </motion.div>
+
+        {/* Shine Effect */}
+        <motion.div
+          className="pointer-events-none absolute inset-0 h-full w-full rounded-2xl opacity-0"
+          style={{
+            background: `radial-gradient(
+              400px circle at ${mouseX.get() * 100}% ${mouseY.get() * 100}%,
+              rgba(255,255,255,0.1),
+              transparent 40%
+            )`,
+            opacity: isHovered ? 0.3 : 0,
+          }}
+          transition={{ duration: 0.3 }}
+        />
+      </motion.div>
     </motion.div>
   );
-};
-
-const variants = {
-  initial: {
-    x: 0,
-  },
-
-  exit: {
-    x: 0,
-    y: 0,
-  },
-  top: {
-    y: 20,
-  },
-  bottom: {
-    y: -20,
-  },
-  left: {
-    x: 20,
-  },
-  right: {
-    x: -20,
-  },
-};
-
-const textVariants = {
-  initial: {
-    y: 0,
-    x: 0,
-    opacity: 0,
-  },
-  exit: {
-    y: 0,
-    x: 0,
-    opacity: 0,
-  },
-  top: {
-    y: -20,
-    opacity: 1,
-  },
-  bottom: {
-    y: 2,
-    opacity: 1,
-  },
-  left: {
-    x: -2,
-    opacity: 1,
-  },
-  right: {
-    x: 20,
-    opacity: 1,
-  },
 };

@@ -1,5 +1,6 @@
 import Container from "@/components/ui/container";
 import { CTADefault } from "@/components/ui/cta";
+import HeroDefault from "@/components/ui/hero-all";
 import Title from "@/components/ui/Title";
 import Glass from "@/lib/helpers";
 import React from "react";
@@ -7,6 +8,11 @@ import React from "react";
 export default function WhatIsCLB() {
   return (
     <>
+    <HeroDefault
+    title="CLB là gì?"
+    description="Điểm chuẩn ngôn ngữ Canada (CLB) tiếng anh là Canadian Language Benchmark, đây là một hệ thống đánh giá về điều kiện cần đầu tiên khi bạn có kế hoạch nhập cư Canada, cũng giống như các nước khác, Canada cũng có những quy chuẩn riêng về ngôn ngữ cho người nhập cư, để đảm bảo việc hòa nhập cuộc sống của họ sau này."
+    backgroundImage={JSON.stringify("About US.jpg")}
+    />
       <Container>
         <Glass className="flex flex-col gap-8">
           <Title
@@ -66,7 +72,7 @@ export default function WhatIsCLB() {
             những cơ hội mới tại đây.
           </p>
         }
-        image={"/service.jpg"}
+        image={JSON.stringify("service.jpg")}
       />
     </>
   );

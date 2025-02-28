@@ -3,10 +3,16 @@ import { CTADefault } from "@/components/ui/cta";
 import React from "react";
 import Glass from "@/lib/helpers";
 import Title from "@/components/ui/Title";
+import HeroDefault from "@/components/ui/hero-all";
 
 export default function FamilySponsorship() {
   return (
     <>
+    <HeroDefault
+    title="Bảo trợ gia đình"
+    description="Bạn có thể đủ điều kiện để bảo lãnh cho các thành viên trong gia đình mình trở thành thường trú nhân để họ có thể sống, học tập và làm việc tại Canada."
+    backgroundImage={JSON.stringify("Partner.jpg")}
+    />
       <Container>
         <Glass className="flex gap-2 px-10 py-10">
           <div className="flex-1 flex flex-col gap-2">
@@ -73,7 +79,7 @@ description="Canada, nổi tiếng với những cảnh quan ngoạn mục, nh�
               hỗ trợ bạn!
             </p>
           }
-          image={"/service.jpg"}
+          image={JSON.stringify("service.jpg")}
         />
       </Container>
     </>

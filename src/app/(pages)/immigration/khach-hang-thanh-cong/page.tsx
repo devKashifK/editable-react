@@ -1,5 +1,6 @@
 import Container from "@/components/ui/container";
 import { DirectionAwareHover } from "@/components/ui/direction-aware-hover";
+import HeroDefault from "@/components/ui/hero-all";
 import Title from "@/components/ui/Title";
 
 import React from "react";
@@ -7,6 +8,11 @@ import React from "react";
 export default function Page() {
   return (
     <>
+    <HeroDefault 
+    title="Thành công của khách hàng"
+    description="Hành trình đến Canada của bạn bắt đầu từ đây. Chúng tôi cung cấp dịch vụ di trú toàn diện được thiết kế riêng cho nhu cầu của bạn, đảm bảo quá trình chuyển đổi suôn sẻ đến cuộc sống mới tại Canada."
+    backgroundImage={JSON.stringify("About US.jpg")}
+    />
       <Container className="flex flex-col py-10 gap-10">
         <Title title="Worker Permit" subtitle="Work in Canada" />
 

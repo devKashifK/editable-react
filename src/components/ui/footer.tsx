@@ -10,6 +10,72 @@ import { motion } from "framer-motion";
 export default function Footer() {
   const navigate = useRouter();
 
+  const provinces = [
+    {
+      path: "/de-cu-tinh-bang-pnp/alberta-nhap-cu-aaip",
+      element: "Alberta Nhap Cu (AAIP)",
+    },
+  
+    {
+      path: "/de-cu-tinh-bang-pnp/british-columbia-bcpnp",
+      element: "British Colombia (BC PNP)",
+    },
+    {
+      path: "/de-cu-tinh-bang-pnp/ontario-oinp",
+      element: "Ontario (OINP)",
+    },
+  
+    {
+      path: "/de-cu-tinh-bang-pnp/manitoba-mpnp",
+      element: "Manitoba (MPNP)",
+    },
+    {
+      path: "/de-cu-tinh-bang-pnp/new-brunswick-nbpnp",
+      element: "New Brunswick (NBPNP)",
+    },
+    // {
+    //   path: "/de-cu-tinh-bang-pnp/newfoundland-and-labrador",
+    //   element: "Newfoundland and Labrador",
+    // },
+  
+    // {
+    //   path: "/de-cu-tinh-bang-pnp/northwest-territories",
+    //   element: "Northwest Territories",
+    // },
+    {
+      path: "/de-cu-tinh-bang-pnp/nova-scotia-nsnp",
+      element: "Nova Scotia (NSNP)",
+    },
+    // {
+    //   path: "/de-cu-tinh-bang-pnp/nanuvut",
+    //   element: "Nanuvut",
+    // },
+  
+    {
+      path: "/de-cu-tinh-bang-pnp/prince-edward-island-peipnp",
+      element: "Prince Edward Island (PEI PNP)",
+    },
+    {
+      path: "/de-cu-tinh-bang-pnp/quebec",
+      element: "Quebec",
+    },
+    {
+      path: "/de-cu-tinh-bang-pnp/saskatchewan-sinp",
+      element: "Saskatchewan (SINP)",
+    },
+    {
+      path: "/de-cu-tinh-bang-pnp/yukon-ynp",
+      element: "Yukon (YNP)",
+    },
+  ];
+
+  const serviceLinks = [
+    { name: "Dinh cu canada", href: "/immigration/dinh-cu-canada" },
+    { name: "Cong Nhan Lanh Nghe Lien Bang", href: "/immigration/nhap-canh-nhanh/cong-nhan-lanh-nghe-lien-bang" },
+    { name: "Du Hoc Dinh Cu", href: "immigration/du-hoc-dinh-cu" },
+    { name: "Family Sponsorship", href: "/immigration/family-sponsorship" },
+  ];
+
   return (
     <footer className="bg-gradient-to-b from-[#1A2A3A] to-[#0F1923] text-white">
       {/* Top Banner */}
@@ -34,7 +100,7 @@ export default function Footer() {
 
       {/* Main Footer Content */}
       <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-12">
           {/* Company Info */}
           <div className="space-y-4">
             <h3 className="text-lg sm:text-xl font-bold text-white">Về iCanPR</h3>
@@ -66,6 +132,38 @@ export default function Footer() {
             </nav>
           </div>
 
+          {/* Provincial Programs */}
+          <div className="space-y-4 lg:col-span-2">
+            <h3 className="text-lg sm:text-xl font-bold text-white">Chương trình tỉnh bang</h3>
+            <nav className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {provinces.map((link) => (
+                <Link
+                  key={link.path}
+                  href={link.path}
+                  className="text-gray-300 hover:bg-white/10 px-2 py-1 rounded-md transition-all duration-200 text-sm"
+                >
+                  {link.element}
+                </Link>
+              ))}
+            </nav>
+          </div>
+
+          {/* Services */}
+          <div className="space-y-4">
+            <h3 className="text-lg sm:text-xl font-bold text-white">Dịch vụ</h3>
+            <nav className="flex flex-col space-y-2">
+              {serviceLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-gray-300 hover:bg-white/10 px-2 py-1 rounded-md transition-all duration-200 text-sm"
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </nav>
+          </div>
+
           {/* Contact Info */}
           <div className="space-y-4">
             <h3 className="text-lg sm:text-xl font-bold text-white">Thông tin liên hệ</h3>
@@ -87,27 +185,6 @@ export default function Footer() {
                 <Icon icon="ph:clock-fill" className="w-6 h-6 text-gray-300" />
                 <p className="text-gray-300">8:30 - 5:30, Thứ 2 - Thứ 6 (Thứ 7: đặt hẹn)</p>
               </div>
-            </div>
-          </div>
-
-          {/* Social Media */}
-          <div className="space-y-4">
-            <h3 className="text-lg sm:text-xl font-bold text-white">Theo dõi chúng tôi</h3>
-            <div className="flex gap-3 sm:gap-4">
-              {[
-                { name: "facebook", url: "https://www.facebook.com/DinhCu.iCanPR" },
-                { name: "linkedin", url: "https://www.linkedin.com/company/icanpr" },
-                { name: "instagram", url: "https://www.instagram.com/icanprvietnam/" },
-                { name: "youtube", url: "https://www.youtube.com/watch?v=2un5fxffDjc" }
-              ].map((social) => (
-                <Link
-                  key={social.name}
-                  href={social.url}
-                  className="bg-white/20 p-2.5 sm:p-3 rounded-full hover:bg-white/30 transition-all duration-200"
-                >
-                  <Icon icon={`ph:${social.name}-logo-fill`} className="w-5 sm:w-6 h-5 sm:h-6 text-white" />
-                </Link>
-              ))}
             </div>
           </div>
 
