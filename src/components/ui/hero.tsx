@@ -68,11 +68,10 @@ export default function Hero({
                 onClick={() => navigate.push(button.link)}
                 className={
                   button.variant === "primary"
-                    ? "bg-white text-background hover:bg-white/90 transition-colors px-8 py-4 rounded-lg text-base font-semibold flex items-center gap-2"
-                    : "bg-transparent border-2 border-white text-white hover:bg-white/10 transition-colors px-8 py-4 rounded-lg text-base font-semibold flex items-center gap-2"
+                    ? "bg-white text-background hover:bg-white/90 transition-colors px-8 py-2 h-10 rounded-lg text-base font-semibold flex items-center gap-2"
+                    : "bg-transparent border-2 border-white text-white hover:bg-white/10 transition-colors px-8 py-2 h-10 rounded-lg text-base font-semibold flex items-center gap-2"
                 }
               >
-                <Icon icon={button.icon} className="text-xl" />
                 {button.text}
               </Button>
             ))}

@@ -1,10 +1,15 @@
 import Container from "@/components/ui/container";
+import HeroDefault from "@/components/ui/hero-all";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import React from "react";
 
 export default function page() {
   return (
+    <>
+    <HeroDefault title="Đầu Bếp Món Âu"  description="Các món ăn Âu được biết đến bởi sự hài hòa, tinh tế và sang trọng cùng với khác biệt văn hóa, sự cầu kỳ trong cách chế biến là những rào cản ảnh hưởng đến tay nghề của các đầu bếp món Âu người Việt."
+    backgroundImage={JSON.stringify("About US.jpg")}
+    /> 
     <Container>
       <Link
         href={"https://icanpr.zohorecruit.com/jobs/Careers/777018000000521548/63200-Cooks-Th%E1%BB%A3-n%E1%BA%A5u-%C4%83n-b%E1%BA%BFp?source=CareerSite"}
@@ -44,6 +49,7 @@ export default function page() {
         </div>
       </Link>
     </Container>
+    </>
   );
 }
 
