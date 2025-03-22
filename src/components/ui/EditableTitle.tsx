@@ -29,8 +29,6 @@ export default function EditableTitle({
     field: "title" | "subtitle" | "description",
     value: string
   ) => {
-
-    console.log(field,value, "value23");
     onChange({ [field]: value });
   };
 

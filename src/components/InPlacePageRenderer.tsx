@@ -386,20 +386,21 @@ export function InPlacePageRenderer({
           return (
             <EditableTitle
               key={path.join("-")}
-              title={renderTextContent(node.props.title) || ""}
-              subtitle={renderTextContent(node.props.subtitle)}
-              description={node.props.description}
+              title={node.props.title || ""}
+              subtitle={node.props.subtitle || ""}
+              description={node.props.description || ""}
               className={node.props.className}
+                // Directly update the props without nesting
               onChange={(newProps) => handleNodeChange(path, newProps)}
             />
-          );
+          );s
         }
         return (
           <Title
             key={path.join("-")}
-            title={renderTextContent(node.props.title) || ""}
-            subtitle={renderTextContent(node.props.subtitle)}
-            description={node.props.description}
+            title={node.props.title || ""}
+            subtitle={node.props.subtitle || ""}
+            description={node.props.description || ""}
             titleClassName={node.props.titleClassName}
             subtitleClassName={node.props.subtitleClassName}
             descriptionClassName={node.props.descriptionClassName}
@@ -728,6 +729,7 @@ export function InPlacePageRenderer({
             >
               {textContent}
             </div>
+            
           );
         }
         return (
@@ -1056,6 +1058,23 @@ export function InPlacePageRenderer({
           <TableBody key={path.join("-")} {...node.props}>
             {node.children?.map((child, i) => renderNode(child, [...path, i]))}
           </TableBody>
+        );
+
+      case "row":
+        return (
+          <div
+            key={path.join("-")}
+            className={cn(
+              "grid gap-4",
+              node.props?.className
+            )}
+            style={{
+              ...node.props?.style,
+              gridTemplateColumns: `repeat(${node.children?.length || 1}, minmax(0, 1fr))`
+            }}
+          >
+            {renderChildren(node.children, path)}
+          </div>
         );
 
       default:
