@@ -1,6 +1,11 @@
-import React from 'react';
-import BlogEditor from './components/BlogEditor';
+'use client';
 
+import React from 'react';
+import dynamic from 'next/dynamic';
+
+const BlogEditor = dynamic(() => import('./components/BlogEditor'), {
+  ssr: false,
+});
 
 export default function NewsPage() {
   return (
