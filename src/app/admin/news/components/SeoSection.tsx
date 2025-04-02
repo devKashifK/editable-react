@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface SeoSectionProps {
   metaTitle: string;
@@ -17,6 +17,11 @@ const SeoSection: React.FC<SeoSectionProps> = ({
 }) => {
   const META_TITLE_MAX_LENGTH = 60;
   const META_DESCRIPTION_MAX_LENGTH = 160;
+  const [origin, setOrigin] = useState('');
+
+  useEffect(() => {
+    setOrigin(window.location.origin);
+  }, []);
 
   return (
     <div className="space-y-4 p-4 border border-gray-200 rounded-lg">
@@ -77,7 +82,7 @@ const SeoSection: React.FC<SeoSectionProps> = ({
         <div className="space-y-1">
           <div className="text-blue-600 text-lg">{metaTitle || 'Title'}</div>
           <div className="text-green-700 text-sm">
-            {window.location.origin}/blog/{slug || 'url-slug'}
+            {origin}/blog/{slug || 'url-slug'}
           </div>
           <div className="text-gray-600 text-sm">
             {metaDescription || 'Meta description will appear here...'}
