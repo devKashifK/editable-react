@@ -27,6 +27,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               { href: "/", icon: "mdi:home", label: "Home" },
               { href: "/admin", icon: "mdi:view-dashboard", label: "Content" },
               { href: "/admin/media", icon: "mdi:image", label: "Media" },
+              { href: "/admin/news", icon: "mdi:newspaper", label: "News" },
+              { href: "/admin/builder", icon: "mdi:cog", label: "Builder" },
             ].map((item) => (
               <Link
                 key={item.href}
