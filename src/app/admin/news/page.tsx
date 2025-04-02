@@ -1,10 +1,6 @@
 import React from 'react';
 import BlogEditor from './components/BlogEditor';
 
-export const metadata = {
-  title: 'Blog Management',
-  description: 'Create and manage blog posts',
-};
 
 export default function NewsPage() {
   return (
